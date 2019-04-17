@@ -6,8 +6,7 @@
     <meta charset="UTF-8">
     <title>You in the Universe</title>
 
-    <!-- jQuery -->
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
+
 
     <!-- Link to BOOTSTRAP. -->
     <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css"
@@ -30,7 +29,7 @@
     <!-- link to CSS. -->
     <link rel="stylesheet" href="assets/css/style.css">
     <!-- Firebase Reference -->
-    <script src="https://www.gstatic.com/firebasejs/4.12.0/firebase.js"></script>
+    <script src="https://www.gstatic.com/firebasejs/5.9.4/firebase.js"></script>
 
     <!-- Moment.js Reference -->
     <script src="https://cdn.jsdelivr.net/momentjs/2.12.0/moment.min.js"></script>
@@ -40,24 +39,99 @@
 
 <body>
 
-    <div class="container-fluid fondoHoro">
+    <div class="container-fluid horosSelect">
         <br>
         <br>
-        <h4>YOU IN THE UNIVERSE</h4>
+        <h4 id="Slide1" class="marginHeader">YOU IN THE UNIVERSE</h4>
+
+        <div class="row">
+
+            <div class="col-md-6">
+                <h1>Are you ready to see what the universe has in store for you?</h1>
+                <br>
+                <p class="zod"> Choose your zodiac sign on the left to discover your month's horoscope, then enter your
+                    birth date to find out how the planets and stars connect with you! <br>
+                    (Whatever slide you are in, if you press on the "YOU IN THE UNIVERSE" title you will be brought back
+                    here to reselect horoscope and data).</p>
+            </div>
+
+
+            <div class="col-md-6">
+                <div class="row">
+                    <div class="col-lg-3 col-md-3 col-sm-3 col-6 text-center">
+                        <img class="horoImg" id="signoAqua" src="assets/images/Signos2/aquarius.png" alt="aquarius"
+                            height="119" width="120">
+                    </div>
+                    <div class="col-lg-3 col-md-3 col-sm-3 col-6 text-center">
+                        <img class="horoImg" id="signoCapri" src="assets/images/Signos2/capricorn.png" alt="capricorn"
+                            height="119" width="120">
+                    </div>
+                    <div class="col-lg-3 col-md-3 col-sm-3 col-6 text-center">
+                        <img class="horoImg" id="signoCancer" src="assets/images/Signos2/cancer.png" alt="cancer"
+                            height="119" width="120">
+                    </div>
+                    <div class="col-lg-3 col-md-3 col-sm-3 col-6 text-center">
+                        <img class="horoImg" id="signoLibra" src="assets/images/Signos2/libra.png" alt="libra"
+                            height="119" width="120">
+                    </div>
+                </div>
+                <br>
+
+                <div class="row">
+                    <div class="col-lg-3 col-md-3 col-sm-3 col-6 text-center">
+                        <img class="horoImg" id="signoVirgo" src="assets/images/Signos2/virgo.png" alt="virgo"
+                            height="119" width="120">
+                    </div>
+                    <div class="col-lg-3 col-md-3 col-sm-3 col-6 text-center">
+                        <img class="horoImg" id="signoScorpio" src="assets/images/Signos2/scorpio.png" alt="scorpio"
+                            height="119" width="120">
+                    </div>
+                    <div class="col-lg-3 col-md-3 col-sm-3 col-6 text-center">
+                        <img class="horoImg" id="signoGemini" src="assets/images/Signos2/gemini.png" alt="gemini"
+                            height="119" width="120">
+                    </div>
+                    <div class="col-lg-3 col-md-3 col-sm-3 col-6 text-center">
+                        <img class="horoImg" id="signoLeo" src="assets/images/Signos2/leo.png" alt="leo" height="119"
+                            width="120">
+                    </div>
+                </div>
+                <br>
+
+                <div class="row">
+                    <div class="col-lg-3 col-md-3 col-sm-3 col-6 text-center">
+                        <img class="horoImg" id="signoAries" src="assets/images/Signos2/aries.png" alt="aries"
+                            height="119" width="120">
+                    </div>
+                    <div class="col-lg-3 col-md-3 col-sm-3 col-6 text-center">
+                        <img class="horoImg" id="signoSag" src="assets/images/Signos2/sagittarius.png" alt="sagittarius"
+                            height="119" width="120">
+                    </div>
+                    <div class="col-lg-3 col-md-3 col-sm-3 col-6 text-center">
+                        <img class="horoImg" id="signoPisces" src="assets/images/Signos2/pisces.png" alt="pisces"
+                            height="119" width="120">
+                    </div>
+                    <div class="col-lg-3 col-md-3 col-sm-3 col-6 text-center">
+                        <img class="horoImg" id="signoTaurus" src="assets/images/Signos2/taurus.png" alt="taurus"
+                            height="119" width="120">
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <div class="container-fluid enterDate">
         <br>
         <br>
-        <br>
-        <br>
-        <br>
+        <h4 id="Slide2" class="marginHeader">YOU IN THE UNIVERSE</h4>
 
         <div class="row">
             <div class="col-lg-1">
 
             </div>
             <div class="col-lg-4">
-                <h1>Are you ready 
-                    to see what the 
-                    universe has in 
+                <h1>Are you ready <br>
+                    to see what the <br>
+                    universe has in <br>
                     store for you?</h1>
                 <br>
                 <p class="zod"> Choose your zodiac sign on the left to discover your months horoscope, then enter your
@@ -66,375 +140,92 @@
             <div class="col-lg-1">
 
             </div>
+            <div class="col-lg-1">
 
-            <div class="col-lg-6">
-                <div class="row">
-                    <div class="col-lg-3 col-md-3 col-sm-6">
-                        <img id="signoAqua" src="assets/images/Signos2/Imagen-09.png" alt="Smiley face" height="119" width="120">
-                    </div>
-                    <div class="col-lg-3 col-md-3 col-sm-6">
-                        <img id="signoCapri" src="assets/images/Signos2/Imagen-10.png" alt="Smiley face" height="119" width="120">
-                    </div>
-                    <div class="col-lg-3 col-md-3 col-sm-6">
-                        <img id="signoCancer" src="assets/images/Signos2/Imagen-11.png" alt="Smiley face" height="119"
-                            width="120">
-                    </div>
-                    <div class="col-lg-3 col-md-3 col-sm-6">
-                        <img id="signoLibra" src="assets/images/Signos2/Imagen-12.png" alt="Smiley face" height="119" width="120">
-                    </div>
+            </div>
+
+            <div class="col-lg-3">
+                <div class="row" id="horoscopeInputImage">
+                    <!-- <img id="signoAqua2" src="assets/images/Signos2/Imagen-09.png" alt="Aqua" height="139" width="140"> -->
                 </div>
+                <div class="row">
+                    <form id="enterDateForm" action="">
+                        <p id="bdayText">Birthdate an time: </p>
+                        <input id="enterDateInput" type="datetime-local" name="bdaytime">
+                        <input id="enterDateGo" type="submit" value="Go">
+                    </form>
+                </div>
+
+
+
                 <br>
 
-                <div class="row">
-                    <div class="col-lg-3 col-md-3 col-sm-6">
-                        <img id="signoVirgo" src="assets/images/Signos2/Imagen-13.png" alt="Aquarius" height="119" width="120">
-                    </div>
-                    <div class="col-lg-3 col-md-3 col-sm-6">
-                        <img id="signoScorpio" src="assets/images/Signos2/Imagen-14.png" alt="Capricorn" height="119" width="120">
-                    </div>
-                    <div class="col-lg-3 col-md-3 col-sm-6">
-                        <img id="signoGemini" src="assets/images/Signos2/Imagen-15.png" alt="Cancer" height="119" width="120">
-                    </div>
-                    <div class="col-lg-3 col-md-3 col-sm-6">
-                        <img id="signoLibrs" src="assets/images/Signos2/Imagen-16.png" alt="Libra" height="119" width="120">
-                    </div>
-                </div>
-                <br>
-
-                <div class="row">
-                    <div class="col-lg-3 col-md-3 col-sm-6">
-                        <img id="signoAries" src="assets/images/Signos2/Imagen-17.png" alt="Aries" height="119" width="120">
-                    </div>
-                    <div class="col-lg-3 col-md-3 col-sm-6">
-                        <img id="signoSag" src="assets/images/Signos2/Imagen-18.png" alt="Sagittarius" height="119" width="120">
-                    </div>
-                    <div class="col-lg-3 col-md-3 col-sm-6">
-                        <img id="signoPisces" src="assets/images/Signos2/Imagen-19.png" alt="Pisces" height="119" width="120">
-                    </div>
-                    <div class="col-lg-3 col-md-3 col-sm-6">
-                        <img id="signoTaurus" src="assets/images/Signos2/Imagen-20.png" alt="Taurus" height="119" width="120">
-                    </div>
-                </div>
             </div>
         </div>
     </div>
-    
-    <div class="container-fluid fondoAsteroids">
+
+    <div class="container-fluid horosResp">
         <br>
         <br>
-        <h4>YOUR HOROSCOPE</h4>
-        <br>
-        <br>
-        <br>
-        <br>
-        <br>
+        <h4 id="Slide3" class="marginHeader">YOU IN THE UNIVERSE</h4>
 
         <div class="row">
             <div class="col-lg-1">
 
             </div>
-            <div class="col-lg-4">
-                <h1>Are you ready 
-                    to see what the 
-                    universe has in 
-                    store for you?</h1>
-                <br>
-                <p class="zod"> Choose your zodiac sign on the left to discover your months horoscope, then enter your
-                    birth date to find what the planets and stars have in store for you! </p>
+            <div class="col-lg-5 text-center" id="constelImgCont">
             </div>
             <div class="col-lg-1">
 
             </div>
 
-            <div class="col-lg-6">
-                <div class="row">
-                    <div class="col-lg-3 col-md-3 col-sm-6">
-                        <img id="signoAqua" src="assets/images/Signos2/Imagen-09.png" alt="Smiley face" height="119" width="120">
-                    </div>
-                    <div class="col-lg-3 col-md-3 col-sm-6">
-                        <img id="signoCapri" src="assets/images/Signos2/Imagen-10.png" alt="Smiley face" height="119" width="120">
-                    </div>
-                    <div class="col-lg-3 col-md-3 col-sm-6">
-                        <img id="signoCancer" src="assets/images/Signos2/Imagen-11.png" alt="Smiley face" height="119"
-                            width="120">
-                    </div>
-                    <div class="col-lg-3 col-md-3 col-sm-6">
-                        <img id="signoLibra" src="assets/images/Signos2/Imagen-12.png" alt="Smiley face" height="119" width="120">
-                    </div>
-                </div>
-                <br>
+            <div class="colMargin col-lg-4">
+                <h2 id="horoSigno"></h2>
+                <p id="horoText"></p>
 
-                <div class="row">
-                    <div class="col-lg-3 col-md-3 col-sm-6">
-                        <img id="signoVirgo" src="assets/images/Signos2/Imagen-13.png" alt="Aquarius" height="119" width="120">
-                    </div>
-                    <div class="col-lg-3 col-md-3 col-sm-6">
-                        <img id="signoScorpio" src="assets/images/Signos2/Imagen-14.png" alt="Capricorn" height="119" width="120">
-                    </div>
-                    <div class="col-lg-3 col-md-3 col-sm-6">
-                        <img id="signoGemini" src="assets/images/Signos2/Imagen-15.png" alt="Cancer" height="119" width="120">
-                    </div>
-                    <div class="col-lg-3 col-md-3 col-sm-6">
-                        <img id="signoLibrs" src="assets/images/Signos2/Imagen-16.png" alt="Libra" height="119" width="120">
-                    </div>
-                </div>
-                <br>
+            </div>
+            <div class="col-lg-1">
 
-                <div class="row">
-                    <div class="col-lg-3 col-md-3 col-sm-6">
-                        <img id="signoAries" src="assets/images/Signos2/Imagen-17.png" alt="Aries" height="119" width="120">
-                    </div>
-                    <div class="col-lg-3 col-md-3 col-sm-6">
-                        <img id="signoSag" src="assets/images/Signos2/Imagen-18.png" alt="Sagittarius" height="119" width="120">
-                    </div>
-                    <div class="col-lg-3 col-md-3 col-sm-6">
-                        <img id="signoPisces" src="assets/images/Signos2/Imagen-19.png" alt="Pisces" height="119" width="120">
-                    </div>
-                    <div class="col-lg-3 col-md-3 col-sm-6">
-                        <img id="signoTaurus" src="assets/images/Signos2/Imagen-20.png" alt="Taurus" height="119" width="120">
-                    </div>
-                </div>
             </div>
         </div>
+        <div class="row">
+            <div class="col-lg-4">
+
+            </div>
+
+            <img id="arrowLeft" src="assets/images/arrow_left-38.png" ref="Slide3" alt="Right Arrow" height="34" width="34">
+            <img id="arrowRight" src="assets/images/arrow_right-37.png" ref="Slide3" alt="Right Arrow" height="34" width="34">
+
+            <div class="col-lg-4">
+
+            </div>
+        </div>
+
     </div>
-  
+
     <div class="container-fluid fondoSunMoon">
         <br>
         <br>
-        <h4>THE SUN THAT SAW YOU FIRST</h4>
-        <br>
-        <br>
-        <br>
-        <br>
-        <br>
+        <h4 id="Slide4" class="marginHeader">YOU IN THE UNIVERSE-4</h4>
 
-        <div class="row">
-            <div class="col-lg-1">
-
-            </div>
-            <div class="col-lg-4">
-                <h1>Are you ready 
-                    to see what the 
-                    universe has in 
-                    store for you?</h1>
-                <br>
-                <p class="zod"> Choose your zodiac sign on the left to discover your months horoscope, then enter your
-                    birth date to find what the planets and stars have in store for you! </p>
-            </div>
-            <div class="col-lg-1">
-
-            </div>
-
-            <div class="col-lg-6">
-                <div class="row">
-                    <div class="col-lg-3 col-md-3 col-sm-6">
-                        <img id="signoAqua" src="assets/images/Signos2/Imagen-09.png" alt="Smiley face" height="119" width="120">
-                    </div>
-                    <div class="col-lg-3 col-md-3 col-sm-6">
-                        <img id="signoCapri" src="assets/images/Signos2/Imagen-10.png" alt="Smiley face" height="119" width="120">
-                    </div>
-                    <div class="col-lg-3 col-md-3 col-sm-6">
-                        <img id="signoCancer" src="assets/images/Signos2/Imagen-11.png" alt="Smiley face" height="119"
-                            width="120">
-                    </div>
-                    <div class="col-lg-3 col-md-3 col-sm-6">
-                        <img id="signoLibra" src="assets/images/Signos2/Imagen-12.png" alt="Smiley face" height="119" width="120">
-                    </div>
-                </div>
-                <br>
-
-                <div class="row">
-                    <div class="col-lg-3 col-md-3 col-sm-6">
-                        <img id="signoVirgo" src="assets/images/Signos2/Imagen-13.png" alt="Aquarius" height="119" width="120">
-                    </div>
-                    <div class="col-lg-3 col-md-3 col-sm-6">
-                        <img id="signoScorpio" src="assets/images/Signos2/Imagen-14.png" alt="Capricorn" height="119" width="120">
-                    </div>
-                    <div class="col-lg-3 col-md-3 col-sm-6">
-                        <img id="signoGemini" src="assets/images/Signos2/Imagen-15.png" alt="Cancer" height="119" width="120">
-                    </div>
-                    <div class="col-lg-3 col-md-3 col-sm-6">
-                        <img id="signoLibrs" src="assets/images/Signos2/Imagen-16.png" alt="Libra" height="119" width="120">
-                    </div>
-                </div>
-                <br>
-
-                <div class="row">
-                    <div class="col-lg-3 col-md-3 col-sm-6">
-                        <img id="signoAries" src="assets/images/Signos2/Imagen-17.png" alt="Aries" height="119" width="120">
-                    </div>
-                    <div class="col-lg-3 col-md-3 col-sm-6">
-                        <img id="signoSag" src="assets/images/Signos2/Imagen-18.png" alt="Sagittarius" height="119" width="120">
-                    </div>
-                    <div class="col-lg-3 col-md-3 col-sm-6">
-                        <img id="signoPisces" src="assets/images/Signos2/Imagen-19.png" alt="Pisces" height="119" width="120">
-                    </div>
-                    <div class="col-lg-3 col-md-3 col-sm-6">
-                        <img id="signoTaurus" src="assets/images/Signos2/Imagen-20.png" alt="Taurus" height="119" width="120">
-                    </div>
-                </div>
-            </div>
-        </div>
     </div>
-    
+
     <div class="container-fluid fondoEarthPic">
         <br>
         <br>
-        <h4>YOUR BIRTHDAY EARTH PIC</h4>
-        <br>
-        <br>
-        <br>
-        <br>
-        <br>
+        <h4 id="Slide5" class="marginHeader">YOU IN THE UNIVERSE-5</h4>
 
-        <div class="row">
-            <div class="col-lg-1">
-
-            </div>
-            <div class="col-lg-4">
-                <h1>Are you ready 
-                    to see what the 
-                    universe has in 
-                    store for you?</h1>
-                <br>
-                <p class="zod"> Choose your zodiac sign on the left to discover your months horoscope, then enter your
-                    birth date to find what the planets and stars have in store for you! </p>
-            </div>
-            <div class="col-lg-1">
-
-            </div>
-
-            <div class="col-lg-6">
-                <div class="row">
-                    <div class="col-lg-3 col-md-3 col-sm-6">
-                        <img id="signoAqua" src="assets/images/Signos2/Imagen-09.png" alt="Smiley face" height="119" width="120">
-                    </div>
-                    <div class="col-lg-3 col-md-3 col-sm-6">
-                        <img id="signoCapri" src="assets/images/Signos2/Imagen-10.png" alt="Smiley face" height="119" width="120">
-                    </div>
-                    <div class="col-lg-3 col-md-3 col-sm-6">
-                        <img id="signoCancer" src="assets/images/Signos2/Imagen-11.png" alt="Smiley face" height="119"
-                            width="120">
-                    </div>
-                    <div class="col-lg-3 col-md-3 col-sm-6">
-                        <img id="signoLibra" src="assets/images/Signos2/Imagen-12.png" alt="Smiley face" height="119" width="120">
-                    </div>
-                </div>
-                <br>
-
-                <div class="row">
-                    <div class="col-lg-3 col-md-3 col-sm-6">
-                        <img id="signoVirgo" src="assets/images/Signos2/Imagen-13.png" alt="Aquarius" height="119" width="120">
-                    </div>
-                    <div class="col-lg-3 col-md-3 col-sm-6">
-                        <img id="signoScorpio" src="assets/images/Signos2/Imagen-14.png" alt="Capricorn" height="119" width="120">
-                    </div>
-                    <div class="col-lg-3 col-md-3 col-sm-6">
-                        <img id="signoGemini" src="assets/images/Signos2/Imagen-15.png" alt="Cancer" height="119" width="120">
-                    </div>
-                    <div class="col-lg-3 col-md-3 col-sm-6">
-                        <img id="signoLibrs" src="assets/images/Signos2/Imagen-16.png" alt="Libra" height="119" width="120">
-                    </div>
-                </div>
-                <br>
-
-                <div class="row">
-                    <div class="col-lg-3 col-md-3 col-sm-6">
-                        <img id="signoAries" src="assets/images/Signos2/Imagen-17.png" alt="Aries" height="119" width="120">
-                    </div>
-                    <div class="col-lg-3 col-md-3 col-sm-6">
-                        <img id="signoSag" src="assets/images/Signos2/Imagen-18.png" alt="Sagittarius" height="119" width="120">
-                    </div>
-                    <div class="col-lg-3 col-md-3 col-sm-6">
-                        <img id="signoPisces" src="assets/images/Signos2/Imagen-19.png" alt="Pisces" height="119" width="120">
-                    </div>
-                    <div class="col-lg-3 col-md-3 col-sm-6">
-                        <img id="signoTaurus" src="assets/images/Signos2/Imagen-20.png" alt="Taurus" height="119" width="120">
-                    </div>
-                </div>
-            </div>
-        </div>
     </div>
-  
+
     <div class="container-fluid fondoOther">
         <br>
         <br>
-        <h4>SOMETHING ELSE</h4>
-        <br>
-        <br>
-        <br>
-        <br>
-        <br>
+        <h4 id="Slide" class="marginHeader">YOU IN THE UNIVERSE-6</h4>
 
-        <div class="row">
-            <div class="col-lg-1">
-
-            </div>
-            <div class="col-lg-4">
-                <h1>Are you ready 
-                    to see what the 
-                    universe has in 
-                    store for you?</h1>
-                <br>
-                <p class="zod"> Choose your zodiac sign on the left to discover your months horoscope, then enter your
-                    birth date to find what the planets and stars have in store for you! </p>
-            </div>
-            <div class="col-lg-1">
-
-            </div>
-
-            <div class="col-lg-6">
-                <div class="row">
-                    <div class="col-lg-3 col-md-3 col-sm-6">
-                        <img id="signoAqua" src="assets/images/Signos2/Imagen-09.png" alt="Smiley face" height="119" width="120">
-                    </div>
-                    <div class="col-lg-3 col-md-3 col-sm-6">
-                        <img id="signoCapri" src="assets/images/Signos2/Imagen-10.png" alt="Smiley face" height="119" width="120">
-                    </div>
-                    <div class="col-lg-3 col-md-3 col-sm-6">
-                        <img id="signoCancer" src="assets/images/Signos2/Imagen-11.png" alt="Smiley face" height="119"
-                            width="120">
-                    </div>
-                    <div class="col-lg-3 col-md-3 col-sm-6">
-                        <img id="signoLibra" src="assets/images/Signos2/Imagen-12.png" alt="Smiley face" height="119" width="120">
-                    </div>
-                </div>
-                <br>
-
-                <div class="row">
-                    <div class="col-lg-3 col-md-3 col-sm-6">
-                        <img id="signoVirgo" src="assets/images/Signos2/Imagen-13.png" alt="Aquarius" height="119" width="120">
-                    </div>
-                    <div class="col-lg-3 col-md-3 col-sm-6">
-                        <img id="signoScorpio" src="assets/images/Signos2/Imagen-14.png" alt="Capricorn" height="119" width="120">
-                    </div>
-                    <div class="col-lg-3 col-md-3 col-sm-6">
-                        <img id="signoGemini" src="assets/images/Signos2/Imagen-15.png" alt="Cancer" height="119" width="120">
-                    </div>
-                    <div class="col-lg-3 col-md-3 col-sm-6">
-                        <img id="signoLibrs" src="assets/images/Signos2/Imagen-16.png" alt="Libra" height="119" width="120">
-                    </div>
-                </div>
-                <br>
-
-                <div class="row">
-                    <div class="col-lg-3 col-md-3 col-sm-6">
-                        <img id="signoAries" src="assets/images/Signos2/Imagen-17.png" alt="Aries" height="119" width="120">
-                    </div>
-                    <div class="col-lg-3 col-md-3 col-sm-6">
-                        <img id="signoSag" src="assets/images/Signos2/Imagen-18.png" alt="Sagittarius" height="119" width="120">
-                    </div>
-                    <div class="col-lg-3 col-md-3 col-sm-6">
-                        <img id="signoPisces" src="assets/images/Signos2/Imagen-19.png" alt="Pisces" height="119" width="120">
-                    </div>
-                    <div class="col-lg-3 col-md-3 col-sm-6">
-                        <img id="signoTaurus" src="assets/images/Signos2/Imagen-20.png" alt="Taurus" height="119" width="120">
-                    </div>
-                </div>
-            </div>
-        </div>
     </div>
 
+    <!-- jQuery -->
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
     <!-- Script -->
     <script src="assets/javascript/javascript.js"></script>
 
