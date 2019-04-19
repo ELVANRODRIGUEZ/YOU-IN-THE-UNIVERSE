@@ -11,22 +11,10 @@ var config = {
 firebase.initializeApp(config);
 
 
-// ============================================== GLOBAL VARIABLES
 
-var database = firebase.database();
-var nasaKey = "6rXbj632uYc9OI6eFA9OERlhwIJKTAuMjM7khNVl";
-var dateEntered = "2000-01-01";
-// console.log(moment(dateEntered).format("L"));
-var zodiacSign = "";
+// ============================================== LOAD DATA TO FIREBASE
 
-// var str = "Hello TecAdmin!";
-// var newStr = str.slice(0, -1);
-// var newStr2 = str.substring(0, 5);
-// console.log(newStr, newStr2);
-
-
-enterChinesHoroData();
-
+// enterChinesHoroData();
 function enterChinesHoroData() {
     var chineseHoro = {
         One: {
@@ -193,7 +181,232 @@ function enterChinesHoroData() {
 
 }
 
+// enterEgiptianHoroData();
+function enterEgiptianHoroData() {
+    var egiptianHoro = {
+        One: {
+            egiptianSign: "Amun-Ra",
+            egiptianSignPeriod: [
+                [1.08, 1.21],
+                [2.01, 2.11]
+            ],
+            egiptianDescription: "Amun-Ra is the creator of the universe and of mankind and is considered the king of the Gods. People born under this sign are strong, tough and hardworking, they also make great leaders because they are good listeners and are generally popular amongst their peers. Although, they tend to get angry quickly when faced with frustrating situations.",
+            egiptianQualities: "Powerful and helpful.",
+            egiptianNegativeTraits: "Secretive.",
+            egiptianIdealJobs: "Financial based roles.",
+            egiptianPlanets: "Saturn and the Sun.",
+            egiptianAnimal: "The animal for Amon-Ra is the Ram.",
+            egiptianZodiacCompatibility: "Amun-Ra is compatible with Horus."
 
+        },
+        Two: {
+            egiptianSign: "Anubis",
+            egiptianSignPeriod: [
+                [5.09, 5.27],
+                [6.29, 7.13]
+            ],
+            egiptianDescription: "Anubis is known as the guardian of the underworld, the God of death and the afterlife. Anubis’ role consists of finding lost souls and examining their hearts, if the heart is pure, the soul is allowed to pass through. Anubis people are very passionate and creative, yet they work best when they are alone. Their personalities are introverted, but nevertheless authoritative, they are no pushovers and take everything in their stride; nothing is too complicated for them.",
+            egiptianQualities: "Truthful and sympathetic.",
+            egiptianNegativeTraits: "Controlling, aggressive and overly competitive.",
+            egiptianIdealJobs: "Counselor.",
+            egiptianPlanets: "Mercury.",
+            egiptianAnimal: "The animal for Anubis is the Jackal.",
+            egiptianZodiacCompatibility: "Anubis is compatible with Bastet and Iris."
+
+        },
+        Three: {
+            egiptianSign: "Bastet",
+            egiptianSignPeriod: [
+                [7.14, 7.28],
+                [9.23, 9.27],
+                [10.03, 10.17]
+            ],
+            egiptianDescription: "Bastet is the Goddess of womankind and home life, she is also known as the cat goddess. Bastet stands out because she is pictured with a cat or lioness’ head with a human body. Bastet is also responsible for protecting women and ensuring their fertility. Bastet people are peaceful and crave balance in their lives, they are naturally shy and prefer quieter environments, to the point where they may even isolate themselves.",
+            egiptianQualities: "Charming, zest for life and thoughtful.",
+            egiptianNegativeTraits: "Possessive and clingy.",
+            egiptianIdealJobs: "Writer.",
+            egiptianPlanets: "Sun and Moon.",
+            egiptianAnimal: "The animal for Bastet is the Cat.",
+            egiptianZodiacCompatibility: "Bastet is compatible with Horus."
+
+        },
+        Four: {
+            egiptianSign: "Geb",
+            egiptianSignPeriod: [
+                [2.12, 2.29],
+                [8.20, 8.31]
+            ],
+            egiptianDescription: "Geb is the God of the Earth and played a hand in the examining of hearts of the deceased, in order to determine the kind of afterlife they would have. As tradition goes, Geb’s laughter would cause earthquakes. Geb people are reliable, honest and caring souls, especially towards their family and friends, yet they can also be sensitive and shy around people they don’t know very well.",
+            egiptianQualities: "Modest, affectionate and fair.",
+            egiptianNegativeTraits: "Vain and anxious.",
+            egiptianIdealJobs: "Lawyer or judge.",
+            egiptianPlanets: "Earth.",
+            egiptianAnimal: "The animal for Geb is the Goose.",
+            egiptianZodiacCompatibility: "Geb is compatible with Horus and Set."
+
+        },
+        Five: {
+            egiptianSign: "Horus",
+            egiptianSignPeriod: [
+                [4.20, 5.08],
+                [8.12, 8.19]
+            ],
+            egiptianDescription: "Horus is the God of the Sky and represents order and harmony, he was born after his father’s death and is the protector of the pharaoh. People born under the Horus sign are brave, daring and optimistic, they are very family orientated and are real rays of sunshine for their loved ones. Horus people are very focused, and will do their upmost to achieve their goals. However, at times they can be stubborn and unrealistic.",
+            egiptianQualities: "Determination, strong-willed and charming.",
+            egiptianNegativeTraits: "Stubbornness and inflexibility.",
+            egiptianIdealJobs: "Politically based roles or PR.",
+            egiptianPlanets: "The Moon and Sun.",
+            egiptianAnimal: "The animal for Horus is the Snake.",
+            egiptianZodiacCompatibility: "Horus is compatible with Bastet and Geb."
+
+        },
+        Six: {
+            egiptianSign: "Isis",
+            egiptianSignPeriod: [
+                [3.11, 3.31],
+                [10.18, 10.29],
+                [12.19, 12.31]
+            ],
+            egiptianDescription: "Isis is the Goddess of Pharaohs and of motherhood, she is the guardian of children, the poor and the deceased. Isis looks out for and protects women at the moment of giving birth. Isis people are straightforward and like to get directly to the point, they are very energetic and playful characters with great sense of humors.",
+            egiptianQualities: "Generous, ambitious and passionate.",
+            egiptianNegativeTraits: "Demanding and hyperactive.",
+            egiptianIdealJobs: "Fashion or art based jobs.",
+            egiptianPlanets: "Moon, Earth and Uranus.",
+            egiptianAnimal: "The animal for Isis is the Ram.",
+            egiptianZodiacCompatibility: "Isis is compatible with Osiris and Thoth."
+
+        },
+        Seven: {
+            egiptianSign: "Hapi",
+            egiptianSignPeriod: [
+                [1.01, 1.07],
+                [6.19, 6.28],
+                [9.01, 9.07],
+                [11.18, 11.26]
+            ],
+            egiptianDescription: "Hapi is the ancient God of the Nile and is responsible for fertilizing the land. The title Hapi comes from the former name for the Nile River. Hapi features in the form of a man, however, he is characterized by women’s breasts and a large, well fed stomach; characteristics which represent fertility. Hapi people are generally gentle and caring characters.",
+            egiptianQualities: "Insightful and wise.",
+            egiptianNegativeTraits: "Impulsive and domineering.",
+            egiptianIdealJobs: "Teacher.",
+            egiptianPlanets: "Venus",
+            egiptianAnimal: "The animal for Hapi is the Antelope.",
+            egiptianZodiacCompatibility: "Hapi is compatible with Amon-Ra and Set."
+
+        },
+        Eight: {
+            egiptianSign: "Mut",
+            egiptianSignPeriod: [
+                [1.22, 1.31],
+                [9.08, 9.22]
+            ],
+            egiptianDescription: "The word Mut means mother of the world, which is perfectly suitable given that Mut is the Goddess responsible for protecting mankind, if Mut is your Egyptian zodiac sign, you’ll likely be a very focused and goal orientated person, you know what you want and how you plan on getting it. Mut people are often sensitive and reserved, but they become more self-confident with time, they are also very generous, patient and charming.",
+            egiptianQualities: "Determined, attentive and hardworking.",
+            egiptianNegativeTraits: "Low moods and distant.",
+            egiptianIdealJobs: "Accountant.",
+            egiptianPlanets: "The Sun.",
+            egiptianAnimal: "The animal for Mut is the Vulture.",
+            egiptianZodiacCompatibility: "Mut is compatible with Amon-Ra and Thoth."
+
+        },
+        Nine: {
+            egiptianSign: "Osiris",
+            egiptianSignPeriod: [
+                [3.01, 3.10],
+                [11.27, 12.18]
+            ],
+            egiptianDescription: "Osiris is the God of death and eternal life, he symbolizes rebirth after death and resurrection. Those born with the Osiris sign often stand out for their intelligence and enterprising nature. Osiris people are natural born leaders and love taking on responsibilities in the work environment.",
+            egiptianQualities: "Enthusiastic, dynamic and daring.",
+            egiptianNegativeTraits: "Bossy and overbearing.",
+            egiptianIdealJobs: "Teacher.",
+            egiptianPlanets: "Pluto and the Sun.",
+            egiptianAnimal: "The animal for Osiris is the Bull.",
+            egiptianZodiacCompatibility: "Osiris is compatible with Isis and Thoth."
+
+        },
+        Ten: {
+            egiptianSign: "Sekhmet",
+            egiptianSignPeriod: [
+                [7.29, 8.11],
+                [10.30, 11.07]
+            ],
+            egiptianDescription: "Sekhmet is known as the Goddess of war, she is also known for ensuring that justice is served and decides whether or not people are guilty. Sekhmet has a woman’s body, but the head of a lion, like Bastet. Those born under the Sekhmet sign are typically jovial and talkative people, they are also honest and sensitive characters.",
+            egiptianQualities: "Optimistic, welcoming and cheerful.",
+            egiptianNegativeTraits: "Impatient and easily offended.",
+            egiptianIdealJobs: "Entertainer.",
+            egiptianPlanets: "The Sun.",
+            egiptianAnimal: "The animal for Sekhmet is the Lion.",
+            egiptianZodiacCompatibility: "Sekhmet is compatible with Geb and Bastet."
+
+        },
+        Eleven: {
+            egiptianSign: "Seth",
+            egiptianSignPeriod: [
+                [5.28, 6.18],
+                [9.28, 10.02]
+            ],
+            egiptianDescription: "According to Egyptian legend, Seth is the God of chaos and notably has an influence on the weather. He is known for killing his brother and chopping him up into pieces and leaving his body parts all over Egypt. If you were born under this sign, you are undoubtedly a free spirit, who craves new adventures and challenges, you’re likely to be a good communicator and love socializing.",
+            egiptianQualities: "Perfectionist, persistent and determined.",
+            egiptianNegativeTraits: "Explosive tempers and dominant personalities.",
+            egiptianIdealJobs: "Recruitment or Teacher.",
+            egiptianPlanets: "Mars.",
+            egiptianAnimal: "The animal for Seth is the Seth, a canine body, slanting eyes, square-tipped ears, tufted tail, and a long, curved, pointed snout",
+            egiptianZodiacCompatibility: "Seth is compatible with Geb."
+
+        },
+        Twelve: {
+            egiptianSign: "Thot",
+            egiptianSignPeriod: [
+                [4.01, 4.19],
+                [11.08, 11.17]
+            ],
+            egiptianDescription: "Thoth is the God of the afterlife, wisdom and knowledge. Typically, those with this particular sign are great at solving problems, organizing things and often have a real knack for writing, because Thoth invented writing and scribe. Thoth people like to take control and lead groups of people, they are generally loveable and respectful characters. On the other hand, Thoth astrology people can at times be impatient to finish tasks.",
+            egiptianQualities: "Creativity, listening and leadership skills.",
+            egiptianNegativeTraits: "Naïve and difficult to work with.",
+            egiptianIdealJobs: "Teacher or Lawyer.",
+            egiptianPlanets: "The Moon and Mercury.",
+            egiptianAnimal: "The animal for Thoth is the Baboon.",
+            egiptianZodiacCompatibility: "Thoth is compatible with Bastet and Isis."
+
+        }
+    }
+
+    Object.keys(egiptianHoro).forEach(function (item) {
+        console.log(egiptianHoro[item].egiptianSign);
+        database.ref("egiptianHoro").push({
+            egiptianSign: egiptianHoro[item].egiptianSign,
+            egiptianSignPeriod: egiptianHoro[item].egiptianSignPeriod,
+            egiptianDescription: egiptianHoro[item].egiptianDescription,
+            egiptianQualities: egiptianHoro[item].egiptianQualities,
+            egiptianNegativeTraits: egiptianHoro[item].egiptianNegativeTraits,
+            egiptianIdealJobs: egiptianHoro[item].egiptianIdealJobs,
+            egiptianPlanets: egiptianHoro[item].egiptianPlanets,
+            egiptianAnimal: egiptianHoro[item].egiptianAnimal,
+            egiptianZodiacCompatibility: egiptianHoro[item].egiptianZodiacCompatibility
+        })
+    })
+
+}
+
+
+
+// ============================================== GLOBAL VARIABLES
+
+var database = firebase.database();
+var chineseHoroRef = database.ref("chineseHoro");
+var egiptianHoroRef = database.ref("egiptianHoro");
+var nasaKey = "6rXbj632uYc9OI6eFA9OERlhwIJKTAuMjM7khNVl";
+var dateEntered;
+var zodiacSign = "";
+
+var testDate = "2000 01 01";
+var testDateObject = moment(testDate);
+var testDateFormatted = testDateObject.format("MMMM Do");
+
+// var testDate = new Date(,1,1);
+// var testDate = "01-01";
+// var testDateObject = moment(testDate);
+// var testDateFormatted = testDateObject.format("MMMM Do");
+// console.log(testDateFormatted);
 
 
 
@@ -224,6 +437,131 @@ $(".horoImg").on("click", function () {
 
 $("#enterDateGo").on("click", function (event) {
     event.preventDefault();
+    dateEntered = moment($("#enterDateInput").val());
+    var yearEntered = parseInt(dateEntered.format("YYYY"));
+
+    knowChineseSign(yearEntered);
+    var dateForEgiptianHoro = dateToDouble(dateEntered);
+
+    function knowChineseSign(year) {
+        var numOfCicles = Math.floor((year - 1900) / 12);
+        var actualSignYear = (year - 1900) - (numOfCicles * 12);
+        actualSignYear = 1900 + actualSignYear;
+        actualSignYear = actualSignYear.toString();
+        return actualSignYear;
+    }
+
+    chineseHoroRef.on("value", getChineseHoro);
+
+    function getChineseHoro(data) {
+        $("#chineseHoroInfo").empty();
+        var chineseHoroArr = data.val();
+        Object.keys(chineseHoroArr).forEach(function (item) {
+            if (knowChineseSign(yearEntered) == chineseHoroArr[item].chineseStartYear) {
+                var chineseHoroInfo =
+                    "<h2 id='china'>CHINESE ZODIAC</h2>" +
+                    "<img id='chineseHoroIcon' src='" +
+                    "assets/images/ZodiacoChino/" +
+                    chineseHoroArr[item].chineseSign + ".png' " +
+                    "alt='Smiley face' height='51' width='99'>" +
+                    "<h2 id='matchingChineseSign'>" +
+                    chineseHoroArr[item].chineseSign + ":</h2>" +
+                    "<p id='chinaHeader'>Things that will bring fortune " +
+                    "to people with " + chineseHoroArr[item].chineseSign +
+                    " sign:</p>" +
+                    "<ul>" +
+                    "<li class='luck'>Lucky colors: " +
+                    chineseHoroArr[item].chineseLuck.chineseLuckyColors +
+                    "</li>" +
+                    "<li class='luck'>Lucky days: " +
+                    chineseHoroArr[item].chineseLuck.chineseLuckyDays +
+                    "</li>" +
+                    "<li class='luck'>Lucky direction: " +
+                    chineseHoroArr[item].chineseLuck.chineseLuckyDirection +
+                    "</li>" +
+                    "<li class='luck'>Lucky flowers: " +
+                    chineseHoroArr[item].chineseLuck.chineseLuckyFlowers +
+                    "</li>" +
+                    "<li class='luck'>Lucky months: " +
+                    chineseHoroArr[item].chineseLuck.chineseLuckyMonths +
+                    "</li>" +
+                    "<li class='luck'>Lucky numbers: " +
+                    chineseHoroArr[item].chineseLuck.chineseLuckyNumbers +
+                    "</li>" +
+                    "</ul>";
+
+                var chineseHoroImgSrc =
+                    "assets/images/ZodiacoChino/" +
+                    chineseHoroArr[item].chineseSign +
+                    ".png";
+                $("#chineseHoroIcon").attr("src", chineseHoroImgSrc);
+                $("#chineseHoroInfo").html(chineseHoroInfo);
+            }
+
+        })
+    }
+
+    egiptianHoroRef.on("value", getEgiptianHoro);
+
+    function getEgiptianHoro(data) {
+        $("#egiptianHoroInfo").empty();
+        var egiptianHoroArr = data.val();
+        var egiptianHoroIds = 0;
+        var EgHoroDatePeriods = 0;
+        var minDate;
+        var maxDate;
+        var check = true;
+        var thisItem;
+        var thisItemPeriods;
+        var retrEgiptHoro;
+        while (check) {
+            thisItem = Object.keys(egiptianHoroArr)[egiptianHoroIds];
+            thisItemPeriods = egiptianHoroArr[thisItem].egiptianSignPeriod;
+            for (EgHoroDatePeriods = 0; EgHoroDatePeriods < thisItemPeriods.length; EgHoroDatePeriods++) {
+                minDate = thisItemPeriods[EgHoroDatePeriods][0];
+                maxDate = thisItemPeriods[EgHoroDatePeriods][1];
+                if (dateForEgiptianHoro >= minDate && dateForEgiptianHoro <= maxDate) {
+
+                    retrEgiptHoro = egiptianHoroArr[thisItem];
+                    check = false;
+
+                }
+            }
+            egiptianHoroIds++;
+        }
+
+        var egiptianHoroInfo =
+            "<h2 id='egypt'>EGYPTIAN ZODIAC</h2>" +
+            "<h2 id='matchingEgiptianSign'>" +
+            retrEgiptHoro.egiptianSign + ":</h2>" +
+            "<p id='egiptianHeader'>" +
+            retrEgiptHoro.egiptianDescription +
+            "</p>" +
+            "<ul>" +
+            "<li class='luck'>Qualities: " +
+            retrEgiptHoro.egiptianQualities +
+            "</li>" +
+            "<li class='luck'>Negative traits: " +
+            retrEgiptHoro.egiptianNegativeTraits +
+            "</li>" +
+            "<li class='luck'>Ideal job: " +
+            retrEgiptHoro.egiptianIdealJobs +
+            "</li>" +
+            "<li class='luck'>Planet: " +
+            retrEgiptHoro.egiptianPlanets +
+            "</li>" +
+            "<li class='luck'>Egyptian animal: " +
+            retrEgiptHoro.egiptianAnimal +
+            "</li>" +
+            "<li class='luck'>" +
+            "Egyptian zodiac compatibility: " +
+            retrEgiptHoro.egiptianZodiacCompatibility +
+            "</li>" +
+            "</ul>";
+
+
+        $("#egiptianHoroInfo").html(egiptianHoroInfo);
+    }
 
     $(".enterDate").css("display", "none");
 
@@ -262,10 +600,9 @@ $("#enterDateGo").on("click", function (event) {
     $constelImgCont.html(constelImg);
     $("#horoSigno").text(zodSignFirstUpper());
 
-
 })
 
-$("#arrowRight").on("click", function () {
+$(".arrowRight").on("click", function () {
     var slideRef = $(this).attr("ref");
     var next = parseInt(slideRef.substring(slideRef.length, slideRef.length - 1)) + 1;
     var prev = parseInt(slideRef.substring(slideRef.length, slideRef.length - 1)) - 1;
@@ -275,7 +612,7 @@ $("#arrowRight").on("click", function () {
     $($nextSlide).parent().css("display", "block");
 })
 
-$("#arrowLeft").on("click", function () {
+$(".arrowLeft").on("click", function () {
     var slideRef = $(this).attr("ref");
     var prev = parseInt(slideRef.substring(slideRef.length, slideRef.length - 1)) - 1;
     var $prevSlide = "#" + slideRef.substring(0, slideRef.length - 1) + prev;
@@ -319,4 +656,11 @@ function zodSignFirstUpper() {
     zodiacSign2 = zodiacSign2.substring(0, 1)
     zodiacSign2 = zodiacSign2 + zodiacSign.substring(1, zodiacSign.length);
     return zodiacSign2;
+}
+
+function dateToDouble(momentDate) {
+    var dateMonth = parseInt(momentDate.format("M"));
+    var dateDay = parseInt(momentDate.format("D"));
+    dateDay = dateDay / 100;
+    return dateMonth + dateDay;
 }
