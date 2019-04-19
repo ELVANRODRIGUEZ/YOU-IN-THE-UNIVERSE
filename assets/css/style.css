@@ -9,6 +9,21 @@ body {
 
 }
 
+
+/* ======================================= GENERAL FOR SLIDES*/
+
+.container-fluid {
+    padding-left:100px;
+    padding-right:100px;
+}
+
+@media only screen and (max-width: 767px){
+    .container-fluid {
+        padding-left:20px;
+        padding-right:20px;
+    }
+}
+
 .colMargin {
     margin-top: 20px;
 }
@@ -45,7 +60,7 @@ body {
 
 }
 
-.fondoSunMoon {
+.chineseEgiptianHoro {
     display: none;
     width: 100%;
     /* min-height: 100vh;
@@ -55,7 +70,7 @@ body {
 
 }
 
-.fondoEarthPic {
+.earthPic {
     display: none;
     width: 100%;
     /* min-height: 100vh;
@@ -65,7 +80,7 @@ body {
 
 }
 
-.fondoOther {
+.solarFlare {
     display: none;
     width: 100%;
     /* min-height: 100vh;
@@ -75,7 +90,28 @@ body {
 
 }
 
-/* ======================================= */
+.sunMoon {
+    display: none;
+    width: 100%;
+    /* min-height: 100vh;
+    background-image: url(../images/Fondos/fondo.png);
+    background-size: 100%;
+    background-repeat: repeat-y; */
+
+}
+
+.distToPlanets {
+    display: none;
+    width: 100%;
+    /* min-height: 100vh;
+    background-image: url(../images/Fondos/fondo.png);
+    background-size: 100%;
+    background-repeat: repeat-y; */
+
+}
+
+
+/* ======================================= GENERAL */
 
 h4 {
 
@@ -107,7 +143,6 @@ h1 {
 }
 
 
-
 /* ======================================= INSTRUCTIONS SLIDE*/
 
 .horoImg:hover {
@@ -117,6 +152,7 @@ h1 {
 .horoImg  {
     opacity: 0.5;
 }
+
 
 /* ======================================= ENTER DATE SLIDE*/
 
@@ -161,9 +197,7 @@ h1 {
 }
 
 
-
 /* ======================================= HOROSCOPE INFO SLIDE*/
-
 
 #horoText {
 
@@ -196,10 +230,193 @@ h1 {
     font-style: italic;
 }
 
+
+
+/* ======================================= CHINESE EGIPTIAN HORO*/
+
+#china {
+    margin-top: 30px;
+    color: white;
+    font-family: 'Montserrat', sans-serif;
+    font-weight: 800;
+    letter-spacing: 1px;
+    font-size: 22px;
+    padding-bottom: 20px;
+    border-bottom: solid 1px #d34040;
+    text-align: center;
+    
+}
+
+#chinaHeader {
+    
+    margin-top:10px;
+    color: white;
+    font-family: 'Montserrat', sans-serif;
+    font-weight: 500;
+    letter-spacing: 1px;
+    line-height: 25px;
+}
+
+#matchingChineseSign {
+    margin-top: 10px;
+    color: white;
+    font-family: 'Montserrat', sans-serif;
+    font-weight: 800;
+    letter-spacing: 1px;
+    font-size: 22px;
+    float: left;
+     
+}
+
+#egypt {
+    margin-top: 30px;
+    color: white;
+    font-family: 'Montserrat', sans-serif;
+    font-weight: 800;
+    letter-spacing: 1px;
+    font-size: 22px;
+    padding-bottom: 20px;
+    border-bottom: solid 1px #d34040;
+    text-align: center;
+    
+}
+
+#matchingEgiptianSign {
+    margin-top: 20px;
+    color: white;
+    font-family: 'Montserrat', sans-serif;
+    font-weight: 800;
+    letter-spacing: 1px;
+    font-size: 22px;
+    
+     
+}
+
+#egiptianHeader {
+    
+    margin-top:10px;
+    color: white;
+    font-family: 'Montserrat', sans-serif;
+    font-weight: 500;
+    letter-spacing: 1px;
+    line-height: 25px;
+}
+
+.luck {
+    
+    margin-top:10px;
+    color: white;
+    font-family: 'Montserrat', sans-serif;
+    font-weight: 500;
+    letter-spacing: 1px;
+    line-height: 25px;
+}
+
+
+
+/* ======================================= EARTH PIC SLIDE*/
+
+#earthPicHeader {
+   
+    margin-top: 10px;
+    color: white;
+    font-family: 'Montserrat', sans-serif;
+    font-weight: 800;
+    letter-spacing: 1px;
+    font-size: 22px;
+    padding-bottom: 20px;
+    border-bottom: solid 1px #d34040;
+    text-align: center;
+    
+
+}
+
+#earthPic{
+    margin-top: 35px;
+}
+
+
+/* ======================================= SOLAR FLARE SLIDE*/
+
+#flareText {
+    
+    margin-top:10px;
+    color: white;
+    font-family: 'Montserrat', sans-serif;
+    font-weight: 500;
+    letter-spacing: 1px;
+    line-height: 25px;
+}
+
+#solarFlare {
+    
+    color: white;
+    font-family: 'Montserrat', sans-serif;
+    font-weight: 800;
+    letter-spacing: 1px;
+    font-size: 28px;
+    padding-bottom: 20px;
+    border-bottom: solid 1px #d34040;
+    margin-top: 65px;
+}
+
+
+/* ======================================= DISTANCE TO PLANETS SLIDE*/
+
+.sunMoonHeader {
+    margin-top: 30px;
+    color: white;
+    font-family: 'Montserrat', sans-serif;
+    font-weight: 800;
+    letter-spacing: 1px;
+    font-size: 22px;
+    padding-bottom: 20px;
+    border-bottom: solid 1px #d34040;
+    text-align: center;
+    
+}
+
+.sunnyMoony {
+    margin-top: 20px;
+    color: white;
+    font-family: 'Montserrat', sans-serif;
+    font-weight: 500;
+    letter-spacing: 1px;
+    font-size: 18px;
+   
+    
+}
+
+
+/* ======================================= DISTANCE TO PLANETS SLIDE*/
+
+#distToPlanetText {
+    
+    margin-top:10px;
+    color: white;
+    font-family: 'Montserrat', sans-serif;
+    font-weight: 500;
+    letter-spacing: 1px;
+    line-height: 25px;
+}
+
+#distToPlanetsHead {
+    
+    color: white;
+    font-family: 'Montserrat', sans-serif;
+    font-weight: 800;
+    letter-spacing: 1px;
+    font-size: 28px;
+    padding-bottom: 20px;
+    border-bottom: solid 1px #d34040;
+    margin-top: 65px;
+}
+
+
 /* ======================================= NAVIGATION ARROWS*/
 
 
-#arrowRight {
+.arrowRight {
     display: block;
     margin: auto;
     margin-top: 30px;
@@ -208,7 +425,7 @@ h1 {
 }
 
 
-#arrowLeft {
+.arrowLeft {
     display: block;
     margin: auto;
     margin-top: 30px;
