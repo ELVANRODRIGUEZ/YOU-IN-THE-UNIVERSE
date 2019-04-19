@@ -639,8 +639,12 @@ function WesternHoro() {
 }
 
 function EarthPic() {
-    var dateInit = dateEntered.format("YYYY-MM-DD");
-    var dateForEarthImg = dateEntered.format("YYYY/MM/DD");
+    var dateInit = dateEntered.format("MM-DD");
+    dateInit = "2018-" + dateInit;
+    
+    var dateForEarthImg = dateEntered.format("MM/DD");
+    dateForEarthImg = "2018/" + dateForEarthImg;
+
     erthPicQryURL = "https://api.nasa.gov/EPIC/api/natural/date/" + dateInit + "?api_key=" + nasaKey;
 
     // Create an AJAX call to retrieve data Log the data in console
