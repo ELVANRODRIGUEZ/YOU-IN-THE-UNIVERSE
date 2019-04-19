@@ -391,16 +391,24 @@ function enterEgiptianHoroData() {
 
 // ============================================== GLOBAL VARIABLES
 
+// ============================ WESTERN HOROSCOPE VARIABLES
+
 var database = firebase.database();
 var chineseHoroRef = database.ref("chineseHoro");
 var egiptianHoroRef = database.ref("egiptianHoro");
+
+
 var nasaKey = "6rXbj632uYc9OI6eFA9OERlhwIJKTAuMjM7khNVl";
 var dateEntered;
 var zodiacSign = "";
 
-var testDate = "2000 01 01";
-var testDateObject = moment(testDate);
-var testDateFormatted = testDateObject.format("MMMM Do");
+// ============================ WESTERN HOROSCOPE VARIABLES
+
+
+
+// var testDate = "2000 01 01";
+// var testDateObject = moment(testDate);
+// var testDateFormatted = testDateObject.format("MMMM Do");
 
 // var testDate = new Date(,1,1);
 // var testDate = "01-01";
@@ -412,8 +420,8 @@ var testDateFormatted = testDateObject.format("MMMM Do");
 
 // ============================================== EVENTS
 
-$("#Slide2, #Slide3, #Slide4, #Slide5, #Slide6").on("click", function () {
-    $(".enterDate, .horosResp, .fondoSunMoon, .fondoEarthPic, .fondoOther").css("display", "none");
+$("#Slide2, #Slide3, #Slide4, #Slide5, #Slide6, #Slide7, #Slide8").on("click", function () {
+    $(".enterDate, .horosResp, .chineseEgiptianHoro, .earthPic, .solarFlare, .sunMoon, .distToPlanets").css("display", "none");
     $(".horosSelect").css("display", "block");
     zodiacSign = "";
     dateEntered = "";
@@ -565,29 +573,11 @@ $("#enterDateGo").on("click", function (event) {
 
     $(".enterDate").css("display", "none");
 
-    var day = "today";
+    ;
 
-    // Create an AJAX call to retrieve data Log the data in console
-    $.ajax({
-        url: "https://aztro.sameerkumar.website?sign=" + zodiacSign + "&day=" + day,
-        type: "POST",
-        date: "Sun, 14 Apr 2019 06:42:42 GMT"
+    WesternHoro();  // WESTERN HOROSCOPE>> Retrieve Western Horoscope through an Ajax call function.
 
-    }).then(function (resp) {
-        var $horoTextCont = $("#horoText")
-
-        var horoscopeText =
-            "<b class='horoscopeTextBold'>Color:</b>  " + resp.color + "<br>" +
-            "<b class='horoscopeTextBold'>Lucky-Number:</b>  " + resp.lucky_number + "<br>" +
-            "<b class='horoscopeTextBold'>Lucky-Time:</b>  " + resp.lucky_time + "<br>" +
-            "<b class='horoscopeTextBold'>Mood:</b>  " + resp.mood + "<br>" +
-            "<b class='horoscopeTextBold'>Compatibility:</b>  " + resp.compatibility + "<br><br>" +
-            "   " + resp.description;
-
-        $horoTextCont.html(horoscopeText);
-        $(".horosResp").css("display", "block");
-
-    })
+    EarthPic(); // EARTH PICTURE>> Retrieve Earth pictures of specified birthday through an Ajax call function.
 
     var $constelImgCont = $("#constelImgCont")
 
@@ -623,6 +613,53 @@ $(".arrowLeft").on("click", function () {
 })
 
 // ============================================== FUNCTIONS
+
+function WesternHoro() {
+    var day = "today"
+    $.ajax({
+        url: "https://aztro.sameerkumar.website?sign=" + zodiacSign + "&day=" + day,
+        type: "POST",
+        date: "Sun, 14 Apr 2019 06:42:42 GMT"
+
+    }).then(function (resp) {
+        var $horoTextCont = $("#horoText")
+
+        var horoscopeText =
+            "<b class='horoscopeTextBold'>Color:</b>  " + resp.color + "<br>" +
+            "<b class='horoscopeTextBold'>Lucky-Number:</b>  " + resp.lucky_number + "<br>" +
+            "<b class='horoscopeTextBold'>Lucky-Time:</b>  " + resp.lucky_time + "<br>" +
+            "<b class='horoscopeTextBold'>Mood:</b>  " + resp.mood + "<br>" +
+            "<b class='horoscopeTextBold'>Compatibility:</b>  " + resp.compatibility + "<br><br>" +
+            "   " + resp.description;
+
+        $horoTextCont.html(horoscopeText);
+        $(".horosResp").css("display", "block");
+
+    })
+}
+
+function EarthPic() {
+    var dateInit = dateEntered.format("YYYY-MM-DD");
+    var dateForEarthImg = dateEntered.format("YYYY/MM/DD");
+    erthPicQryURL = "https://api.nasa.gov/EPIC/api/natural/date/" + dateInit + "?api_key=" + nasaKey;
+
+    // Create an AJAX call to retrieve data Log the data in console
+    $.ajax({
+        url: erthPicQryURL,
+        method: "GET"
+    }).then(function (resp) {
+        var earthImgAddress = 
+        "https://epic.gsfc.nasa.gov/archive/natural/" + dateForEarthImg + 
+        "/png/" + resp[0].image + 
+        ".png";
+
+        // console.log(earthImgAddress);
+
+        $("#earthPic").attr("src", earthImgAddress);
+    })
+
+
+}
 
 function sunPulse() {
 
