@@ -41,20 +41,20 @@ $(document).ready(function () {
     // ================================= DOCUMENT FO NOTIFICATIONS, KNOWLEDGE, INFORMATION DONKI - (Solar Flare (FLR))
     // Shows closets asteroids at the given date
 
-    // dateInit = "2018-09-28";
-    // dateEnd = "2019-09-28";
-    // queryURL = "https://api.nasa.gov/DONKI/FLR?startDate=" + dateInit + "&endDate=" + dateEnd + "&api_key=" + nasaKey;
-    // console.log(queryURL);
+    dateInit = "2010-01-01";
+    dateEnd = "2019-09-28";
+    queryURL = "https://api.nasa.gov/DONKI/FLR?startDate=" + dateInit + "&endDate=" + dateEnd + "&api_key=" + nasaKey;
+    console.log(queryURL);
 
-    // // Create an AJAX call to retrieve data Log the data in console
-    // $.ajax({
-    //     url: queryURL,
-    //     method: "GET"
-    // }).then(function (resp) {
-    //     console.log("SOLAR FLARE INFORMATION:");
-    //     console.log(resp);
+    // Create an AJAX call to retrieve data Log the data in console
+    $.ajax({
+        url: queryURL,
+        method: "GET"
+    }).then(function (resp) {
+        console.log("SOLAR FLARE INFORMATION:");
+        console.log(resp);
 
-    // })
+    })
 
 
 
@@ -102,35 +102,35 @@ $(document).ready(function () {
     // ================================= CONTENT STICKY 
     // Shows a dynamic horoscope
 
-    var contentStickyKey = "E4TRCCQ56Z9KY";
-    dateInit = "2018-12-02";
-    var username = "I-PCFYHHKXFJG5";
-    var password = "E4TRCCQ56Z9KY";
-    var app_id = "";
-    var timezone = "America/Mexico_City";
-    var dateForEarthImg = "2018/12/02";
-    queryURL = "https://www.contentsticky.com/api/auth";
-    console.log(queryURL);
+    // var contentStickyKey = "E4TRCCQ56Z9KY";
+    // dateInit = "2018-12-02";
+    // var username = "I-PCFYHHKXFJG5";
+    // var password = "E4TRCCQ56Z9KY";
+    // var app_id = "";
+    // var timezone = "America/Mexico_City";
+    // var dateForEarthImg = "2018/12/02";
+    // queryURL = "https://www.contentsticky.com/api/auth";
+    // console.log(queryURL);
 
-    // Create an AJAX call to retrieve data Log the data in console
-    $.ajax({
-        url: queryURL,
-        method: "POST",
-        headers: {
-            "Content-Type": "application/json",
-            "Authorization": "Bearer Access-Token"
-        },
-        data: {
-        username: "I-PCFYHHKXFJG5",
-            password: "E4TRCCQ56Z9KY",
-            domain_name: null,
-            timezone: "America/Mexico_City"
-        }
-    }).then(function (resp) {
-        console.log("HOROSCOPE:");
-        console.log(resp);
+    // // Create an AJAX call to retrieve data Log the data in console
+    // $.ajax({
+    //     url: queryURL,
+    //     method: "POST",
+    //     headers: {
+    //         "Content-Type": "application/json",
+    //         "Authorization": "Bearer Access-Token"
+    //     },
+    //     data: {
+    //     username: "I-PCFYHHKXFJG5",
+    //         password: "E4TRCCQ56Z9KY",
+    //         domain_name: null,
+    //         timezone: "America/Mexico_City"
+    //     }
+    // }).then(function (resp) {
+    //     console.log("HOROSCOPE:");
+    //     console.log(resp);
 
-    })
+    // })
 
 
 

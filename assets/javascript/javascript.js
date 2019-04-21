@@ -10,9 +10,11 @@ var config = {
 };
 firebase.initializeApp(config);
 
+var database = firebase.database();
+var chineseHoroRef = database.ref("chineseHoro");
+var egiptianHoroRef = database.ref("egiptianHoro");
 
-
-// ============================================== LOAD DATA TO FIREBASE
+// ==================================== LOAD DATA TO FIREBASE
 
 // enterChinesHoroData();
 function enterChinesHoroData() {
@@ -391,30 +393,9 @@ function enterEgiptianHoroData() {
 
 // ============================================== GLOBAL VARIABLES
 
-// ============================ WESTERN HOROSCOPE VARIABLES
-
-var database = firebase.database();
-var chineseHoroRef = database.ref("chineseHoro");
-var egiptianHoroRef = database.ref("egiptianHoro");
-
-
 var nasaKey = "6rXbj632uYc9OI6eFA9OERlhwIJKTAuMjM7khNVl";
 var dateEntered;
 var zodiacSign = "";
-
-// ============================ WESTERN HOROSCOPE VARIABLES
-
-
-
-// var testDate = "2000 01 01";
-// var testDateObject = moment(testDate);
-// var testDateFormatted = testDateObject.format("MMMM Do");
-
-// var testDate = new Date(,1,1);
-// var testDate = "01-01";
-// var testDateObject = moment(testDate);
-// var testDateFormatted = testDateObject.format("MMMM Do");
-// console.log(testDateFormatted);
 
 
 
@@ -425,6 +406,7 @@ $("#Slide2, #Slide3, #Slide4, #Slide5, #Slide6, #Slide7, #Slide8").on("click", f
     $(".horosSelect").css("display", "block");
     zodiacSign = "";
     dateEntered = "";
+    window.scrollTo(0,0);
 })
 
 $(".horoImg").on("click", function () {
@@ -433,13 +415,17 @@ $(".horoImg").on("click", function () {
     zodiacSign = $(this).attr("alt");
 
     var $signSelected = $("#horoscopeInputImage");
+    
+    $("#signSelImg").remove();
 
     var signSeleImgRoute =
         "<img id='signSelImg' src='assets/images/Signos2/" +
         zodiacSign + ".png' alt='" + zodiacSign +
         "' height='139' width='140'></img>";
 
-    $signSelected.html(signSeleImgRoute);
+    $signSelected.prepend(signSeleImgRoute);
+
+    $("#enterDateInput").val("1981-09-28T10:23");
 
 })
 
@@ -467,7 +453,7 @@ $("#enterDateGo").on("click", function (event) {
         Object.keys(chineseHoroArr).forEach(function (item) {
             if (knowChineseSign(yearEntered) == chineseHoroArr[item].chineseStartYear) {
                 var chineseHoroInfo =
-                    "<h2 id='china'>CHINESE ZODIAC</h2>" +
+                    "<h2 class='slideHeaders'>Chinese Zodiac</h2>" +
                     "<img id='chineseHoroIcon' src='" +
                     "assets/images/ZodiacoChino/" +
                     chineseHoroArr[item].chineseSign + ".png' " +
@@ -478,22 +464,28 @@ $("#enterDateGo").on("click", function (event) {
                     "to people with " + chineseHoroArr[item].chineseSign +
                     " sign:</p>" +
                     "<ul>" +
-                    "<li class='luck'>Lucky colors: " +
+                    "<li class='luck'><b " + 
+                    "class='textBoldItalic'>Lucky-colors: </b>" +
                     chineseHoroArr[item].chineseLuck.chineseLuckyColors +
                     "</li>" +
-                    "<li class='luck'>Lucky days: " +
+                    "<li class='luck'><b " + 
+                    "class='textBoldItalic'>Lucky-days: </b>" +
                     chineseHoroArr[item].chineseLuck.chineseLuckyDays +
                     "</li>" +
-                    "<li class='luck'>Lucky direction: " +
+                    "<li class='luck'><b " + 
+                    "class='textBoldItalic'>Lucky-direction: </b>" +
                     chineseHoroArr[item].chineseLuck.chineseLuckyDirection +
                     "</li>" +
-                    "<li class='luck'>Lucky flowers: " +
+                    "<li class='luck'><b " + 
+                    "class='textBoldItalic'>Lucky-flowers: </b>" +
                     chineseHoroArr[item].chineseLuck.chineseLuckyFlowers +
                     "</li>" +
-                    "<li class='luck'>Lucky months: " +
+                    "<li class='luck'><b " + 
+                    "class='textBoldItalic'>Lucky-months: </b>" +
                     chineseHoroArr[item].chineseLuck.chineseLuckyMonths +
                     "</li>" +
-                    "<li class='luck'>Lucky numbers: " +
+                    "<li class='luck'><b " + 
+                    "class='textBoldItalic'>Lucky-numbers: </b>" + 
                     chineseHoroArr[item].chineseLuck.chineseLuckyNumbers +
                     "</li>" +
                     "</ul>";
@@ -539,30 +531,34 @@ $("#enterDateGo").on("click", function (event) {
         }
 
         var egiptianHoroInfo =
-            "<h2 id='egypt'>EGYPTIAN ZODIAC</h2>" +
+            "<h2 class='slideHeaders'>Egyptian Zodiac</h2>" +
             "<h2 id='matchingEgiptianSign'>" +
             retrEgiptHoro.egiptianSign + ":</h2>" +
             "<p id='egiptianHeader'>" +
             retrEgiptHoro.egiptianDescription +
             "</p>" +
             "<ul>" +
-            "<li class='luck'>Qualities: " +
+            "<li class='luck'>" +
+            "<b class='textBoldItalic'>Qualities: </b>" +
             retrEgiptHoro.egiptianQualities +
             "</li>" +
-            "<li class='luck'>Negative traits: " +
+            "<li class='luck'>" +
+            "<b class='textBoldItalic'>Negative traits: </b>" +
             retrEgiptHoro.egiptianNegativeTraits +
             "</li>" +
-            "<li class='luck'>Ideal job: " +
-            retrEgiptHoro.egiptianIdealJobs +
+            "<li class='luck'>" +
+            "<b class='textBoldItalic'>Ideal job: </b>" + retrEgiptHoro.egiptianIdealJobs +
             "</li>" +
-            "<li class='luck'>Planet: " +
+            "<li class='luck'>" +
+            "<b class='textBoldItalic'>Planet: </b>" +
             retrEgiptHoro.egiptianPlanets +
             "</li>" +
-            "<li class='luck'>Egyptian animal: " +
+            "<li class='luck'>" +
+            "<b class='textBoldItalic'>Egyptian animal: </b>" +
             retrEgiptHoro.egiptianAnimal +
             "</li>" +
             "<li class='luck'>" +
-            "Egyptian zodiac compatibility: " +
+            "<b class='textBoldItalic'>Egyptian zodiac compatibility: </b>" +
             retrEgiptHoro.egiptianZodiacCompatibility +
             "</li>" +
             "</ul>";
@@ -575,9 +571,11 @@ $("#enterDateGo").on("click", function (event) {
 
     ;
 
-    WesternHoro();  // WESTERN HOROSCOPE>> Retrieve Western Horoscope through an Ajax call function.
+    westernHoro(); // WESTERN HOROSCOPE>> Retrieves Western Horoscope through an Ajax call function.
 
-    EarthPic(); // EARTH PICTURE>> Retrieve Earth pictures of specified birthday through an Ajax call function.
+    earthPic(); // EARTH PICTURE>> Retrieves Earth pictures of specified birthday through an Ajax call function.
+
+    solarFlare(); // SOLAR FLARE>> Retrieves solar flares that occured the closest to your last decade transition through an Ajax call function.
 
     var $constelImgCont = $("#constelImgCont")
 
@@ -600,6 +598,7 @@ $(".arrowRight").on("click", function () {
     var $thisSlide = "#" + slideRef;
     $($thisSlide).parent().css("display", "none");
     $($nextSlide).parent().css("display", "block");
+    window.scrollTo(0,0);
 })
 
 $(".arrowLeft").on("click", function () {
@@ -609,12 +608,15 @@ $(".arrowLeft").on("click", function () {
     var $thisSlide = "#" + slideRef;
     $($thisSlide).parent().css("display", "none");
     $($prevSlide).parent().css("display", "block");
+    window.scrollTo(0,0);
 
 })
 
+
+
 // ============================================== FUNCTIONS
 
-function WesternHoro() {
+function westernHoro() {
     var day = "today"
     $.ajax({
         url: "https://aztro.sameerkumar.website?sign=" + zodiacSign + "&day=" + day,
@@ -625,11 +627,11 @@ function WesternHoro() {
         var $horoTextCont = $("#horoText")
 
         var horoscopeText =
-            "<b class='horoscopeTextBold'>Color:</b>  " + resp.color + "<br>" +
-            "<b class='horoscopeTextBold'>Lucky-Number:</b>  " + resp.lucky_number + "<br>" +
-            "<b class='horoscopeTextBold'>Lucky-Time:</b>  " + resp.lucky_time + "<br>" +
-            "<b class='horoscopeTextBold'>Mood:</b>  " + resp.mood + "<br>" +
-            "<b class='horoscopeTextBold'>Compatibility:</b>  " + resp.compatibility + "<br><br>" +
+            "<b class='textBoldItalic'>Color:</b>  " + resp.color + "<br>" +
+            "<b class='textBoldItalic'>Lucky-Number:</b>  " + resp.lucky_number + "<br>" +
+            "<b class='textBoldItalic'>Lucky-Time:</b>  " + resp.lucky_time + "<br>" +
+            "<b class='textBoldItalic'>Mood:</b>  " + resp.mood + "<br>" +
+            "<b class='textBoldItalic'>Compatibility:</b>  " + resp.compatibility + "<br><br>" +
             "   " + resp.description;
 
         $horoTextCont.html(horoscopeText);
@@ -638,24 +640,24 @@ function WesternHoro() {
     })
 }
 
-function EarthPic() {
-    var dateInit = dateEntered.format("MM-DD");
-    dateInit = "2018-" + dateInit;
-    
+function earthPic() {
+    var referenceDate = dateEntered.format("MM-DD");
+    referenceDate = "2018-" + referenceDate;
+
     var dateForEarthImg = dateEntered.format("MM/DD");
     dateForEarthImg = "2018/" + dateForEarthImg;
 
-    erthPicQryURL = "https://api.nasa.gov/EPIC/api/natural/date/" + dateInit + "?api_key=" + nasaKey;
+    erthPicQryURL = "https://api.nasa.gov/EPIC/api/natural/date/" + referenceDate + "?api_key=" + nasaKey;
 
     // Create an AJAX call to retrieve data Log the data in console
     $.ajax({
         url: erthPicQryURL,
         method: "GET"
     }).then(function (resp) {
-        var earthImgAddress = 
-        "https://epic.gsfc.nasa.gov/archive/natural/" + dateForEarthImg + 
-        "/png/" + resp[0].image + 
-        ".png";
+        var earthImgAddress =
+            "https://epic.gsfc.nasa.gov/archive/natural/" + dateForEarthImg +
+            "/png/" + resp[0].image +
+            ".png";
 
         // console.log(earthImgAddress);
 
@@ -665,35 +667,164 @@ function EarthPic() {
 
 }
 
-function sunPulse() {
+function solarFlare() {
 
-    dateInit = "2001-09-28";
-    dateEnd = "2011-09-28";
-    queryURL = "https://api.nasa.gov/DONKI/FLR?startDate=" + dateInit + "&endDate=" + dateEnd + "&api_key=" + nasaKey;
+    var yearsDiff = moment().diff(dateEntered, "years");
 
-    // Create an AJAX call to retrieve data Log the data in console
-    $.ajax({
-        url: queryURL,
-        method: "GET"
-    }).then(function (resp) {
-        // console.log("SOLAR FLARE INFORMATION:");
-        console.log(resp);
-        resp.forEach(function (item) {
-            // console.log("SOLAR FLARE INFORMATION");
-            // console.log("   Intensity: " + item.classType);
-            // console.log("   Class: " + flareClass);
-            // console.log("   Peak Time: " + item.peakTime);
-            var flareClass = item.classType.charAt(0);
-            var flareDate = item.peakTime.substring(0, 10);
-            var test = moment(flareDate, "YYYY-MM-DD");
-            console.log(test);
+    var YearsAdded = moment(dateEntered).add(yearsDiff, "y");
+
+    var monthsDiff = moment().diff(YearsAdded, "months");
+
+    var monthsAdded = YearsAdded.add(monthsDiff, "M");
+
+    var daysDiff = moment().diff(monthsAdded, "days");
+
+    var daysAdded = monthsAdded.add(daysDiff, "d");
+
+    var lastDecadeTrans = Math.floor(yearsDiff / 10) * 10;
+
+    lastDecadeTrans = moment(dateEntered).add(lastDecadeTrans, "y");
+
+    var solarFlareGenObj = {
+        B: {
+            intensity: "",
+            duration: "",
+            start: "",
+            timeDiffMin: 100000000000000,
+            timeDiffDays: ""
+
+        },
+        C: {
+            intensity: "",
+            duration: "",
+            start: "",
+            timeDiffMin: 100000000000000,
+            timeDiffDays: ""
+
+        },
+        M: {
+            intensity: "",
+            duration: "",
+            start: "",
+            timeDiffMin: 100000000000000,
+            timeDiffDays: ""
+        },
+        X: {
+            intensity: "",
+            duration: "",
+            start: "",
+            timeDiffMin: 100000000000000,
+            timeDiffDays: ""
+        }
+    }
+
+    function requestMore(i) {
+
+        var dateInit = moment(lastDecadeTrans).subtract(i, "y");
+        dateInit = dateInit.format("YYYY-MM-DD");
+        var dateEnd = moment(lastDecadeTrans).add(i, "y");
+        dateEnd = dateEnd.format("YYYY-MM-DD");
+        queryURL = "https://api.nasa.gov/DONKI/FLR?startDate=" + dateInit + "&endDate=" + dateEnd + "&api_key=" + nasaKey;
+        // console.log(solarFlareGenObj);
+
+        $.ajax({
+            url: queryURL,
+            method: "GET"
+        }).then(function (resp) {
+            // console.log(solarFlareGenObj);
+
+            resp.forEach(function (item) {
+
+                var solarFlareMag = item.classType.substring(0, 1);
+                var solarFlareStart = moment(item.beginTime);
+                var solFlStartVSlstDecTrDays =
+                    Math.abs(solarFlareStart.diff(lastDecadeTrans, "days"));
+                var solFlStartVSlstDecTrMin =
+                    Math.abs(solarFlareStart.diff(lastDecadeTrans, "minutes"));
+                var solarFlareEnd = moment(item.endTime);
+                var solarFlareDuration = solarFlareEnd.diff(solarFlareStart, "minutes");
+
+                if (solarFlareGenObj[solarFlareMag].timeDiffMin > solFlStartVSlstDecTrMin) {
+                    solarFlareGenObj[solarFlareMag].intensity = item.classType;
+                    solarFlareGenObj[solarFlareMag].duration = solarFlareDuration;
+                    solarFlareGenObj[solarFlareMag].start = solarFlareStart.format("YYYY-MM-DD");
+                    solarFlareGenObj[solarFlareMag].timeDiffMin = solFlStartVSlstDecTrMin;
+                    solarFlareGenObj[solarFlareMag].timeDiffDays = solFlStartVSlstDecTrDays;
+                }
+            })
+            // console.log(solarFlareGenObj);
+
+            if (
+                solarFlareGenObj.B.intensity == "" ||
+                solarFlareGenObj.C.intensity == "" ||
+                solarFlareGenObj.M.intensity == "" ||
+                solarFlareGenObj.X.intensity == "" 
+                ) {
+                requestMore(i + .5);
+
+            } else {
+
+                $("#solarFlareDiv").html(
+                    "<h2 class='slideHeaders'>Your Solar Flares</h2>" +
+                    "<p id='flareText'>" +
+                    "(Your last decade transition was on " +
+                    lastDecadeTrans.format("MMMM DD") +
+                    "th, " + lastDecadeTrans.format("YYYY") +
+                    ").</p>" +
+                    "<p id='flareText'>" +
+                    "A Solar Flare is an explosion on the surface of the Sun that often releases enough energy to power the whole Planet Earth for several thousand years. The peaks of this explosions occur in cycles of a little bit more than a decade." +
+                    "</p>" +
+                    "<ol>" +
+                    "<li class='luck'>Solar class B: " +
+                    "Weak explosions with no appreciable effect on earth." +
+                    "<ul>" +
+                    "<li class='luck'> The closest B flare to your last decade transition was " + solarFlareGenObj.B.timeDiffDays + " days away. " +
+                    "On " + solarFlareGenObj.B.start + " to be exact." +
+                    "<li class='luck'> It lasted for " + solarFlareGenObj.B.duration + " minutes." +
+                    "</ul>" +
+                    "</li>" +
+                    "<li class='luck'>Solar class C: " +
+                    "This explosions cannot cause appreciable effects on earth either." +
+                    "<ul>" +
+                    "<li class='luck'> The closest C flare to your last decade transition was " + solarFlareGenObj.C.timeDiffDays + " days away. " +
+                    "On " + solarFlareGenObj.C.start + " to be exact." +
+                    "<li class='luck'> It lasted for " + solarFlareGenObj.C.duration + " minutes." +
+                    "</ul>" +
+                    "</li>" +
+                    "<li class='luck'>Solar class M: " +
+                    "This explosions can cause brief blackouts of communications around Earth poles and minor radiation storm that can affect astronauts." +
+                    "<ul>" +
+                    "<li class='luck'> The closest M flare to your last decade transition was " + solarFlareGenObj.M.timeDiffDays + " days away. " +
+                    "On " + solarFlareGenObj.M.start + " to be exact." +
+                    "<li class='luck'> It lasted for " + solarFlareGenObj.M.duration + " minutes." +
+                    "</ul>" +
+                    "</li>" +
+                    "<li class='luck'>Solar class X: " +
+                    "This flares are the real juggernauts. They can severly harm sattelites and people flying around poles can even get radiation dosis. They also have the potential to create global transmitions problems and worldwide blackouts." +
+                    "<ul>" +
+                    "<li class='luck'> The closest X flare to your last decade transition was " + solarFlareGenObj.X.timeDiffDays + " days away. " +
+                    "On " + solarFlareGenObj.X.start + " to be exact." +
+                    "<li class='luck'> It lasted for " + solarFlareGenObj.X.duration + " minutes." +
+                    "</ul>" +
+                    "</li>" +
+                    "</ol>"
+
+                )
+
+            }
+
         })
-    })
+
+    }
+
+    requestMore(.5);
+
+
 }
 
 function zodSignFirstUpper() {
     var zodiacSign2 = zodiacSign.toUpperCase();
-    console.log(zodiacSign2);
+    // console.log(zodiacSign2);
     zodiacSign2 = zodiacSign2.substring(0, 1)
     zodiacSign2 = zodiacSign2 + zodiacSign.substring(1, zodiacSign.length);
     return zodiacSign2;
