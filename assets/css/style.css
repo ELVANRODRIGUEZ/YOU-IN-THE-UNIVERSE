@@ -13,23 +13,30 @@ body {
 /* ======================================= GENERAL FOR SLIDES*/
 
 .container-fluid {
-    padding-left:100px;
-    padding-right:100px;
+    padding-left:70px;
+    padding-right:70px;
+}
+
+@media only screen and (max-width: 960px){
+    .container-fluid {
+        padding-left:50px;
+        padding-right:50px;
+    }
 }
 
 @media only screen and (max-width: 767px){
     .container-fluid {
-        padding-left:20px;
-        padding-right:20px;
+        padding-left:30px;
+        padding-right:30px;
     }
 }
 
 .colMargin {
-    margin-top: 20px;
+    margin-top: 00px;
 }
 
 .marginHeader {
-    margin-bottom: 12vh;
+    margin-bottom: 10vh;
 }
 
 .horosSelect {
@@ -142,15 +149,57 @@ h1 {
     line-height: 30px;
 }
 
+.luck {
+    
+    margin-top:10px;
+    color: white;
+    font-family: 'Montserrat', sans-serif;
+    font-weight: 500;
+    letter-spacing: 1px;
+    line-height: 25px;
+}
+
+.textBoldItalic {
+    font-weight: 800;
+    font-style: italic;
+}
+
+.slideHeaders {
+
+    margin-top: 00px;
+    color: white;
+    font-family: 'Montserrat', sans-serif;
+    font-weight: 800;
+    letter-spacing: 1px;
+    font-size: 22px;
+    padding-bottom: 20px;
+    border-bottom: solid 1px #d34040;
+    text-align: center;
+    
+}
 
 /* ======================================= INSTRUCTIONS SLIDE*/
+
+.horoImg  {
+    opacity: 0.5;
+}
 
 .horoImg:hover {
     opacity: 1;
 }
 
-.horoImg  {
-    opacity: 0.5;
+.contForSignsPics {
+    padding: 0px 5px;
+}
+
+.instructions {
+    padding-right: 35px;
+}
+
+@media only screen and (max-width: 767px){
+    .instructions {
+        padding-right: 15px;
+    }
 }
 
 
@@ -167,33 +216,33 @@ h1 {
     margin-bottom: 10px;
 }
 
-#signSelImg {
-    display: block;
-    margin-left: 50%;
-    transform: translateX(-50%);
-}
-
 #enterDateForm {
     display: block;
-    margin-left: 50%;
+    /* margin-left: 50%; */
     margin-top: 10px;
-    transform: translateX(-50%);
+    /* transform: translateX(-50%); */
 }
 
 #enterDateInput {
-    max-width: calc(100% - 50px);
+    max-width: calc(100% - 45px);
     margin-top: 10px;
-    border: solid 2px black;
+    border: solid 0px black;
     border-radius: 7px;
+    font-size:16px;
+    padding: 0;
+    height: 25px;
 
 }
 
 #enterDateGo {
-    width: 45px;
+    width: 35px;
     margin-top: 10px;
     background-color: white;
-    border: solid 2px black;
+    border: solid 0px black;
     border-radius: 7px;
+    font-size:16px;
+    padding: 0;
+    height: 25px;
 }
 
 
@@ -209,20 +258,12 @@ h1 {
     line-height: 25px;
 }
 
+#constelImgCont {
+    padding: 0 5px;
+}
 #constellation {
     max-width: 100%;
     height: auto;
-}
-
-#horoSigno {
-
-    color: white;
-    font-family: 'Montserrat', sans-serif;
-    font-weight: 800;
-    letter-spacing: 1px;
-    font-size: 28px;
-    padding-bottom: 20px;
-    border-bottom: solid 1px #d34040;
 }
 
 .horoscopeTextBold {
@@ -231,21 +272,7 @@ h1 {
 }
 
 
-
 /* ======================================= CHINESE EGIPTIAN HORO*/
-
-#china {
-    margin-top: 30px;
-    color: white;
-    font-family: 'Montserrat', sans-serif;
-    font-weight: 800;
-    letter-spacing: 1px;
-    font-size: 22px;
-    padding-bottom: 20px;
-    border-bottom: solid 1px #d34040;
-    text-align: center;
-    
-}
 
 #chinaHeader {
     
@@ -268,17 +295,8 @@ h1 {
      
 }
 
-#egypt {
-    margin-top: 30px;
-    color: white;
-    font-family: 'Montserrat', sans-serif;
-    font-weight: 800;
-    letter-spacing: 1px;
-    font-size: 22px;
-    padding-bottom: 20px;
-    border-bottom: solid 1px #d34040;
-    text-align: center;
-    
+#chineseHoroInfo, #egiptianHoroInfo {
+    margin-bottom: 35px;
 }
 
 #matchingEgiptianSign {
@@ -302,16 +320,26 @@ h1 {
     line-height: 25px;
 }
 
-.luck {
-    
-    margin-top:10px;
-    color: white;
-    font-family: 'Montserrat', sans-serif;
-    font-weight: 500;
-    letter-spacing: 1px;
-    line-height: 25px;
+#chineseHoroInfo {
+    padding-right: 30px;
 }
 
+@media only screen and (max-width: 767px){
+    #chineseHoroInfo {
+        padding-right: 15px;
+    }
+}
+
+#egiptianHoroInfo {
+    padding-left: 30px;
+
+}
+
+@media only screen and (max-width: 767px){
+    #egiptianHoroInfo {
+        padding-right: 15px;
+    }
+}
 
 
 /* ======================================= EARTH PIC SLIDE*/
@@ -333,7 +361,7 @@ h1 {
 
 #earthPic{
     margin-top: 35px;
-    clip-path: circle(41% at center);
+    clip-path: circle(40% at center);
 }
 
 
@@ -358,11 +386,11 @@ h1 {
     font-size: 28px;
     padding-bottom: 20px;
     border-bottom: solid 1px #d34040;
-    margin-top: 65px;
+    margin-top: 0px;
 }
 
 
-/* ======================================= DISTANCE TO PLANETS SLIDE*/
+/* ======================================= SUN MUN INFO SLIDE*/
 
 .sunMoonHeader {
     margin-top: 30px;
@@ -416,7 +444,6 @@ h1 {
 
 /* ======================================= NAVIGATION ARROWS*/
 
-
 .arrowRight {
     display: block;
     margin: auto;
@@ -424,7 +451,6 @@ h1 {
     margin-bottom: 30px;
 
 }
-
 
 .arrowLeft {
     display: block;
