@@ -427,7 +427,7 @@ $(".horoImg").on("click", function () {
 
     $signSelected.prepend(signSeleImgRoute);
 
-    $("#enterDateInput").val("1981-09-28T10:23");
+    // $("#enterDateInput").val("1981-09-28T10:23");
 
     window.scrollTo(0, 3000);
 
