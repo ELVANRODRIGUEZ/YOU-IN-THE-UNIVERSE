@@ -34,6 +34,9 @@
     <!-- Moment.js Reference -->
     <script src="https://cdn.jsdelivr.net/momentjs/2.12.0/moment.min.js"></script>
 
+    <!-- Numberal.js Reference -->
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/numeral.js/2.0.6/numeral.min.js"></script>
+
 
 </head>
 
@@ -60,59 +63,58 @@
                 <div class="row">
                     <div class="contForSignsPics col-lg-3 col-md-4 col-sm-3 col-6 text-center">
                         <img class="horoImg" id="signoAqua" src="assets/images/Signos2/aquarius.png" alt="aquarius"
-                             width="100%">
+                            width="100%">
                     </div>
                     <div class="contForSignsPics col-lg-3 col-md-4 col-sm-3 col-6 text-center">
                         <img class="horoImg" id="signoCapri" src="assets/images/Signos2/capricorn.png" alt="capricorn"
-                             width="100%">
+                            width="100%">
                     </div>
                     <div class="contForSignsPics col-lg-3 col-md-4 col-sm-3 col-6 text-center">
                         <img class="horoImg" id="signoCancer" src="assets/images/Signos2/cancer.png" alt="cancer"
-                             width="100%">
+                            width="100%">
                     </div>
                     <div class="contForSignsPics col-lg-3 col-md-4 col-sm-3 col-6 text-center">
                         <img class="horoImg" id="signoLibra" src="assets/images/Signos2/libra.png" alt="libra"
-                             width="100%">
+                            width="100%">
                     </div>
-                <!-- </div> -->
-                <!-- <br> -->
+                    <!-- </div> -->
+                    <!-- <br> -->
 
-                <!-- <div class="row"> -->
+                    <!-- <div class="row"> -->
                     <div class="contForSignsPics col-lg-3 col-md-4 col-sm-3 col-6 text-center">
                         <img class="horoImg" id="signoVirgo" src="assets/images/Signos2/virgo.png" alt="virgo"
-                             width="100%">
+                            width="100%">
                     </div>
                     <div class="contForSignsPics col-lg-3 col-md-4 col-sm-3 col-6 text-center">
                         <img class="horoImg" id="signoScorpio" src="assets/images/Signos2/scorpio.png" alt="scorpio"
-                             width="100%">
+                            width="100%">
                     </div>
                     <div class="contForSignsPics col-lg-3 col-md-4 col-sm-3 col-6 text-center">
                         <img class="horoImg" id="signoGemini" src="assets/images/Signos2/gemini.png" alt="gemini"
-                             width="100%">
-                    </div>
-                    <div class="contForSignsPics col-lg-3 col-md-4 col-sm-3 col-6 text-center">
-                        <img class="horoImg" id="signoLeo" src="assets/images/Signos2/leo.png" alt="leo" 
                             width="100%">
                     </div>
-                <!-- </div> -->
-                <!-- <br> -->
+                    <div class="contForSignsPics col-lg-3 col-md-4 col-sm-3 col-6 text-center">
+                        <img class="horoImg" id="signoLeo" src="assets/images/Signos2/leo.png" alt="leo" width="100%">
+                    </div>
+                    <!-- </div> -->
+                    <!-- <br> -->
 
-                <!-- <div class="row"> -->
+                    <!-- <div class="row"> -->
                     <div class="contForSignsPics col-lg-3 col-md-4 col-sm-3 col-6 text-center">
                         <img class="horoImg" id="signoAries" src="assets/images/Signos2/aries.png" alt="aries"
-                             width="100%">
+                            width="100%">
                     </div>
                     <div class="contForSignsPics col-lg-3 col-md-4 col-sm-3 col-6 text-center">
                         <img class="horoImg" id="signoSag" src="assets/images/Signos2/sagittarius.png" alt="sagittarius"
-                             width="100%">
+                            width="100%">
                     </div>
                     <div class="contForSignsPics col-lg-3 col-md-4 col-sm-3 col-6 text-center">
                         <img class="horoImg" id="signoPisces" src="assets/images/Signos2/pisces.png" alt="pisces"
-                             width="100%">
+                            width="100%">
                     </div>
                     <div class="contForSignsPics col-lg-3 col-md-4 col-sm-3 col-6 text-center">
                         <img class="horoImg" id="signoTaurus" src="assets/images/Signos2/taurus.png" alt="taurus"
-                             width="100%">
+                            width="100%">
                     </div>
                 </div>
             </div>
@@ -140,9 +142,10 @@
             <div class="col-md-1">
 
             </div>
-            <div class="col-md-5 d-flex align-items-center justify-content-center" >
-                <div id="horoscopeInputImage" class="text-center" >
-                    <br><form id="enterDateForm" action="">
+            <div class="col-md-5 d-flex align-items-center justify-content-center">
+                <div id="horoscopeInputImage" class="text-center">
+                    <br>
+                    <form id="enterDateForm" action="">
                         <p id="bdayText">Birthdate an time: </p>
                         <input id="enterDateInput" type="datetime-local" name="bdaytime">
                         <input id="enterDateGo" type="submit" value="Go">
@@ -270,7 +273,7 @@
             </div> -->
 
             <div class="col-lg-6" id="solarFlareDiv">
-                
+
             </div>
 
         </div>
@@ -299,28 +302,27 @@
         <h4 id="Slide7" class="marginHeader">YOU IN THE UNIVERSE</h4>
 
         <div class="row">
-            <div class="col-lg-1">
+
+            <div class="col-md-5 text-center">
+                <h2 class="slideHeaders">Your birth Sun</h2>
+                <img id="sunPic" src="assets/images/sunrise.png" alt="Sun" height="auto" width="100%">
+
+                <div id="sunInfo" class="text-left">
+
+                </div>
 
             </div>
-            <div class="col-lg-5 text-center">
-                <h2 class="sunMoonHeader">SUN</h2>
-                <img id="sunPic" src="assets/images/sunrise.png" alt="Sun" height="300" width="300">
-
-                <h2 class="sunnyMoony">Sunrise:</h2>
-                <h2 class="sunnyMoony">Sunset:</h2>
-
-            </div>
-            <div class="col-lg-1">
+            <div class="col-md-2">
 
             </div>
 
-            <div class="col-lg-5 text-center">
-                <h2 class="sunMoonHeader">MOON</h2>
-                <img id="moonPic" src="assets/images/moon.png" alt="Moon" height="300" width="300">
+            <div class="col-md-5 text-center">
+                <h2 class="slideHeaders">Your birth Moon</h2>
+                <img id="moonPic" src="assets/images/Fases_Lunares/New Moon.png" alt="Moon" height="auto" width="100%">
 
-                <h2 class="sunnyMoony">Moon Phase:</h2>
-                <h2 class="sunnyMoony">Moonrise:</h2>
-                <h2 class="sunnyMoony">Moonset:</h2>
+                <div id="moonInfo" class="text-left">
+
+                </div>
 
             </div>
 
@@ -341,30 +343,21 @@
         </div>
     </div>
 
-    <div class="container-fluid distToPlanets">
+    <div class="container-fluid yourAsteroids">
         <br>
         <br>
         <h4 id="Slide8" class="marginHeader">YOU IN THE UNIVERSE</h4>
         <div class="row">
-            <div class="col-lg-1">
-
+            
+            <div class="col-lg-5 col d-flex justify-content-center align-items-center">
+                <img id="yourCometsImg" src="assets/images/Asteroids.png" alt="Comets" width="100%">
             </div>
-            <div class="col-lg-5 col">
-                <img id="distToPlanetImg" src="assets/images/solarSystem.png" alt="Solar Flare" height="443"
-                    width="437">
-            </div>
-            <div class="col-lg-1">
+            
+            <div class="col-lg-7 ">
 
-            </div>
-
-            <div class="col-lg-4 ">
-
-                <h2 id="distToPlanetsHead">Distance to Planets</h2>
-                <p id="distToPlanetText">Sed metus augue, consequat vel est sit amet, iaculis semper nisl. Fusce eget
-                    nisl eget
-                    turpis mattis faucibus et a urna. Sed tempor lorem in fringilla tincidunt. Curabitur nec justo
-                    ultricies, faucibus orci nec, pharetra justo. In eget mi est. Ut ac egestas felis. Donec quis quam
-                    eu lectus condimentum scelerisque..</p>
+                <h2 class="slideHeaders">Your Birth Asteroids</h2>
+                <div class="row" id="astInfo">
+                </div>
             </div>
 
         </div>

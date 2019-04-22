@@ -41,20 +41,20 @@ $(document).ready(function () {
     // ================================= DOCUMENT FO NOTIFICATIONS, KNOWLEDGE, INFORMATION DONKI - (Solar Flare (FLR))
     // Shows closets asteroids at the given date
 
-    dateInit = "2010-01-01";
-    dateEnd = "2019-09-28";
-    queryURL = "https://api.nasa.gov/DONKI/FLR?startDate=" + dateInit + "&endDate=" + dateEnd + "&api_key=" + nasaKey;
-    console.log(queryURL);
+    // dateInit = "2010-01-01";
+    // dateEnd = "2019-09-28";
+    // queryURL = "https://api.nasa.gov/DONKI/FLR?startDate=" + dateInit + "&endDate=" + dateEnd + "&api_key=" + nasaKey;
+    // console.log(queryURL);
 
-    // Create an AJAX call to retrieve data Log the data in console
-    $.ajax({
-        url: queryURL,
-        method: "GET"
-    }).then(function (resp) {
-        console.log("SOLAR FLARE INFORMATION:");
-        console.log(resp);
+    // // Create an AJAX call to retrieve data Log the data in console
+    // $.ajax({
+    //     url: queryURL,
+    //     method: "GET"
+    // }).then(function (resp) {
+    //     console.log("SOLAR FLARE INFORMATION:");
+    //     console.log(resp);
 
-    })
+    // })
 
 
 
@@ -83,21 +83,21 @@ $(document).ready(function () {
     // ================================= WORLD WEATHER ONLINE ASTRONOMY API 
     // Shows sun and moon set and rise times for a specified location
 
-    // var wwoKey = "f3c0e6294ea74179b6845818191104";
-    // dateInit = "2018-12-02";
-    // var dateForEarthImg = "2018/12/02";
-    // queryURL = "https://api.worldweatheronline.com/premium/v1/astronomy.ashx?key=" + wwoKey + "&q=19.432608,-99.133209&date=1981-09-28&format=json"
-    // console.log(queryURL);
+    var wwoKey = "f3c0e6294ea74179b6845818191104";
+    dateInit = "2018-12-02";
+    var dateForEarthImg = "2018/12/02";
+    queryURL = "https://api.worldweatheronline.com/premium/v1/astronomy.ashx?key=" + wwoKey + "&q=19.432608,-99.133209&date=1981-09-28&format=json"
+    console.log(queryURL);
 
-    // // Create an AJAX call to retrieve data Log the data in console
-    // $.ajax({
-    //     url: queryURL,
-    //     method: "GET"
-    // }).then(function (resp) {
-    //     console.log("SUN AND MOON INFO:");
-    //     console.log(resp);
+    // Create an AJAX call to retrieve data Log the data in console
+    $.ajax({
+        url: queryURL,
+        method: "GET"
+    }).then(function (resp) {
+        console.log("SUN AND MOON INFO:");
+        console.log(resp);
 
-    // })
+    })
 
     // ================================= CONTENT STICKY 
     // Shows a dynamic horoscope

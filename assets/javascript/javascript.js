@@ -394,6 +394,8 @@ function enterEgiptianHoroData() {
 // ============================================== GLOBAL VARIABLES
 
 var nasaKey = "6rXbj632uYc9OI6eFA9OERlhwIJKTAuMjM7khNVl";
+var wwoKey = "f3c0e6294ea74179b6845818191104";
+
 var dateEntered;
 var zodiacSign = "";
 
@@ -402,11 +404,11 @@ var zodiacSign = "";
 // ============================================== EVENTS
 
 $("#Slide2, #Slide3, #Slide4, #Slide5, #Slide6, #Slide7, #Slide8").on("click", function () {
-    $(".enterDate, .horosResp, .chineseEgiptianHoro, .earthPic, .solarFlare, .sunMoon, .distToPlanets").css("display", "none");
+    $(".enterDate, .horosResp, .chineseEgiptianHoro, .earthPic, .solarFlare, .sunMoon, .yourAsteroids").css("display", "none");
     $(".horosSelect").css("display", "block");
     zodiacSign = "";
     dateEntered = "";
-    window.scrollTo(0,0);
+    window.scrollTo(0, 0);
 })
 
 $(".horoImg").on("click", function () {
@@ -415,7 +417,7 @@ $(".horoImg").on("click", function () {
     zodiacSign = $(this).attr("alt");
 
     var $signSelected = $("#horoscopeInputImage");
-    
+
     $("#signSelImg").remove();
 
     var signSeleImgRoute =
@@ -426,6 +428,8 @@ $(".horoImg").on("click", function () {
     $signSelected.prepend(signSeleImgRoute);
 
     $("#enterDateInput").val("1981-09-28T10:23");
+
+    window.scrollTo(0, 3000);
 
 })
 
@@ -464,28 +468,28 @@ $("#enterDateGo").on("click", function (event) {
                     "to people with " + chineseHoroArr[item].chineseSign +
                     " sign:</p>" +
                     "<ul>" +
-                    "<li class='luck'><b " + 
+                    "<li class='luck'><b " +
                     "class='textBoldItalic'>Lucky-colors: </b>" +
                     chineseHoroArr[item].chineseLuck.chineseLuckyColors +
                     "</li>" +
-                    "<li class='luck'><b " + 
+                    "<li class='luck'><b " +
                     "class='textBoldItalic'>Lucky-days: </b>" +
                     chineseHoroArr[item].chineseLuck.chineseLuckyDays +
                     "</li>" +
-                    "<li class='luck'><b " + 
+                    "<li class='luck'><b " +
                     "class='textBoldItalic'>Lucky-direction: </b>" +
                     chineseHoroArr[item].chineseLuck.chineseLuckyDirection +
                     "</li>" +
-                    "<li class='luck'><b " + 
+                    "<li class='luck'><b " +
                     "class='textBoldItalic'>Lucky-flowers: </b>" +
                     chineseHoroArr[item].chineseLuck.chineseLuckyFlowers +
                     "</li>" +
-                    "<li class='luck'><b " + 
+                    "<li class='luck'><b " +
                     "class='textBoldItalic'>Lucky-months: </b>" +
                     chineseHoroArr[item].chineseLuck.chineseLuckyMonths +
                     "</li>" +
-                    "<li class='luck'><b " + 
-                    "class='textBoldItalic'>Lucky-numbers: </b>" + 
+                    "<li class='luck'><b " +
+                    "class='textBoldItalic'>Lucky-numbers: </b>" +
                     chineseHoroArr[item].chineseLuck.chineseLuckyNumbers +
                     "</li>" +
                     "</ul>";
@@ -563,19 +567,20 @@ $("#enterDateGo").on("click", function (event) {
             "</li>" +
             "</ul>";
 
-
         $("#egiptianHoroInfo").html(egiptianHoroInfo);
     }
 
     $(".enterDate").css("display", "none");
-
-    ;
 
     westernHoro(); // WESTERN HOROSCOPE>> Retrieves Western Horoscope through an Ajax call function.
 
     earthPic(); // EARTH PICTURE>> Retrieves Earth pictures of specified birthday through an Ajax call function.
 
     solarFlare(); // SOLAR FLARE>> Retrieves solar flares that occured the closest to your last decade transition through an Ajax call function.
+
+    sunMoon(); // SUN AND MOON INFO>> Retrieves information about the sunrise, sunsen, moonrise, moonset and lunar phase at the iput birthdate through an Ajax call function.
+
+    birthAsteroids(); // BIRTH ASTEROIDS INFO>> Retrieves the 5 closest asteroids at the iput birthdate through an Ajax call function.
 
     var $constelImgCont = $("#constelImgCont")
 
@@ -588,6 +593,8 @@ $("#enterDateGo").on("click", function (event) {
     $constelImgCont.html(constelImg);
     $("#horoSigno").text(zodSignFirstUpper());
 
+    window.scrollTo(0, 0);
+
 })
 
 $(".arrowRight").on("click", function () {
@@ -598,7 +605,7 @@ $(".arrowRight").on("click", function () {
     var $thisSlide = "#" + slideRef;
     $($thisSlide).parent().css("display", "none");
     $($nextSlide).parent().css("display", "block");
-    window.scrollTo(0,0);
+    window.scrollTo(0, 0);
 })
 
 $(".arrowLeft").on("click", function () {
@@ -608,7 +615,7 @@ $(".arrowLeft").on("click", function () {
     var $thisSlide = "#" + slideRef;
     $($thisSlide).parent().css("display", "none");
     $($prevSlide).parent().css("display", "block");
-    window.scrollTo(0,0);
+    window.scrollTo(0, 0);
 
 })
 
@@ -658,8 +665,6 @@ function earthPic() {
             "https://epic.gsfc.nasa.gov/archive/natural/" + dateForEarthImg +
             "/png/" + resp[0].image +
             ".png";
-
-        // console.log(earthImgAddress);
 
         $("#earthPic").attr("src", earthImgAddress);
     })
@@ -724,14 +729,12 @@ function solarFlare() {
         dateInit = dateInit.format("YYYY-MM-DD");
         var dateEnd = moment(lastDecadeTrans).add(i, "y");
         dateEnd = dateEnd.format("YYYY-MM-DD");
-        queryURL = "https://api.nasa.gov/DONKI/FLR?startDate=" + dateInit + "&endDate=" + dateEnd + "&api_key=" + nasaKey;
-        // console.log(solarFlareGenObj);
+        SolFlareQryURL = "https://api.nasa.gov/DONKI/FLR?startDate=" + dateInit + "&endDate=" + dateEnd + "&api_key=" + nasaKey;
 
         $.ajax({
-            url: queryURL,
+            url: SolFlareQryURL,
             method: "GET"
         }).then(function (resp) {
-            // console.log(solarFlareGenObj);
 
             resp.forEach(function (item) {
 
@@ -752,14 +755,13 @@ function solarFlare() {
                     solarFlareGenObj[solarFlareMag].timeDiffDays = solFlStartVSlstDecTrDays;
                 }
             })
-            // console.log(solarFlareGenObj);
 
             if (
                 solarFlareGenObj.B.intensity == "" ||
                 solarFlareGenObj.C.intensity == "" ||
                 solarFlareGenObj.M.intensity == "" ||
-                solarFlareGenObj.X.intensity == "" 
-                ) {
+                solarFlareGenObj.X.intensity == ""
+            ) {
                 requestMore(i + .5);
 
             } else {
@@ -767,7 +769,7 @@ function solarFlare() {
                 $("#solarFlareDiv").html(
                     "<h2 class='slideHeaders'>Your Solar Flares</h2>" +
                     "<p id='flareText'>" +
-                    "(Your last decade transition was on " +
+                    "(This informations relates you your last decade transition, which was on " +
                     lastDecadeTrans.format("MMMM DD") +
                     "th, " + lastDecadeTrans.format("YYYY") +
                     ").</p>" +
@@ -779,7 +781,7 @@ function solarFlare() {
                     "Weak explosions with no appreciable effect on earth." +
                     "<ul>" +
                     "<li class='luck'> The closest B flare to your last decade transition was " + solarFlareGenObj.B.timeDiffDays + " days away. " +
-                    "On " + solarFlareGenObj.B.start + " to be exact." +
+                    "On " + solarFlareGenObj.B.start + " to be precise." +
                     "<li class='luck'> It lasted for " + solarFlareGenObj.B.duration + " minutes." +
                     "</ul>" +
                     "</li>" +
@@ -787,7 +789,7 @@ function solarFlare() {
                     "This explosions cannot cause appreciable effects on earth either." +
                     "<ul>" +
                     "<li class='luck'> The closest C flare to your last decade transition was " + solarFlareGenObj.C.timeDiffDays + " days away. " +
-                    "On " + solarFlareGenObj.C.start + " to be exact." +
+                    "On " + solarFlareGenObj.C.start + " to be precise." +
                     "<li class='luck'> It lasted for " + solarFlareGenObj.C.duration + " minutes." +
                     "</ul>" +
                     "</li>" +
@@ -795,7 +797,7 @@ function solarFlare() {
                     "This explosions can cause brief blackouts of communications around Earth poles and minor radiation storm that can affect astronauts." +
                     "<ul>" +
                     "<li class='luck'> The closest M flare to your last decade transition was " + solarFlareGenObj.M.timeDiffDays + " days away. " +
-                    "On " + solarFlareGenObj.M.start + " to be exact." +
+                    "On " + solarFlareGenObj.M.start + " to be precise." +
                     "<li class='luck'> It lasted for " + solarFlareGenObj.M.duration + " minutes." +
                     "</ul>" +
                     "</li>" +
@@ -819,12 +821,110 @@ function solarFlare() {
 
     requestMore(.5);
 
+}
 
+function sunMoon() {
+    var sunMoonDate = dateEntered.format("YYYY-MM-DD");
+    sunMoonQryURL = "https://api.worldweatheronline.com/premium/v1/astronomy.ashx?key=" + wwoKey + "&q=19.432608,-99.133209&date=" + sunMoonDate + "&format=json"
+
+    // Create an AJAX call to retrieve data Log the data in console
+    $.ajax({
+        url: sunMoonQryURL,
+        method: "GET"
+    }).then(function (resp) {
+        var moonPhase = resp.data.time_zone[0].moon_phase;
+        var moonrise = resp.data.time_zone[0].moonrise;
+        var moonset = resp.data.time_zone[0].moonset;
+        var sunrise = resp.data.time_zone[0].sunrise;
+        var sunset = resp.data.time_zone[0].sunset;
+
+        $("#sunInfo").html(
+            "<ul>" +
+            "<li class='luck'><b class='textBoldItalic'>Sunrise: </b>" +
+            sunrise + "</li>" +
+            "<li class='luck'><b class='textBoldItalic'>Sunset: </b>" +
+            sunset + "</li>" +
+            "</ul>"
+        );
+
+        $("#moonPic").attr(
+            "src", "assets/images/Fases_Lunares/" + moonPhase + ".png"
+        )
+
+        $("#moonInfo").html(
+            "<ul>" +
+            "<li class='luck'><b class='textBoldItalic'>Lunar-Phase: </b>" +
+            moonPhase + "</li>" +
+            "<li class='luck'><b class='textBoldItalic'>Moonrise: </b>" +
+            moonrise + "</li>" +
+            "<li class='luck'><b class='textBoldItalic'>Moonset: </b>" +
+            moonset + "</li>" +
+            "</ul>"
+        );
+
+    })
+
+}
+
+function birthAsteroids() {
+    var birthDate = dateEntered.format("YYYY-MM-DD");
+    birthAsteroidsyURL = "https://api.nasa.gov/neo/rest/v1/feed?start_date=" +
+        birthDate + "&end_date=" +
+        birthDate + "&api_key=" + nasaKey;
+
+    // Create an AJAX call to retrieve data Log the data in console
+    $.ajax({
+        url: birthAsteroidsyURL,
+        method: "GET"
+    }).then(function (resp) {
+        $("#astInfo").html(
+            "<p class='luck'>" + 
+            "This are the 4 closest asteroids at your birthdate. " + 
+            "They all came by to greet you when you where born:</p>"
+        );
+
+        for (var i = 0; i < 4; i++) {
+            var astName = resp.near_earth_objects[birthDate][i].name;
+
+            var astMaxSize = resp.near_earth_objects[birthDate][i].estimated_diameter.meters.estimated_diameter_max;
+            astMaxSize = parseFloat(astMaxSize);
+            astMaxSize = astMaxSize.toFixed(4);
+
+            var astMinSize = resp.near_earth_objects[birthDate][i].estimated_diameter.meters.estimated_diameter_min;
+            astMinSize = parseFloat(astMinSize);
+            astMinSize = astMinSize.toFixed(4);
+
+            var astSpeed = resp.near_earth_objects[birthDate][i].close_approach_data[0].relative_velocity.kilometers_per_second;
+            astSpeed = parseFloat(astSpeed);
+            astSpeed = astSpeed.toFixed(4);
+
+            var astDistance = resp.near_earth_objects[birthDate][i].close_approach_data[0].miss_distance.kilometers;
+            astDistance = numeral(astDistance).format('0,0');
+            
+            var astContent =
+            "<div class='col-12 col-sm-12 col-md-6 col-lg-6 col'>" +
+            "<p class='subHeaders'>Id: " + astName + "</p>" +
+            "<ul>" +
+            "<li class='luck'><b class='textBoldItalic'>Max-Diameter: </b>" +
+            astMaxSize + "m</li>" +
+            "<li class='luck'><b class='textBoldItalic'>Min-Diameter: </b>" +
+            astMinSize + "m</li>" +
+            "<li class='luck'><b class='textBoldItalic'>Relative-Speed: </b>" +
+            astSpeed + "km/sec</li>" +
+            "<li class='luck'><b class='textBoldItalic'>Distance: </b>" +
+            astDistance + "km</li>" +
+            "</ul>" +
+            "</div>";
+
+            $("#astInfo").append(astContent);
+
+        }
+
+    });
 }
 
 function zodSignFirstUpper() {
     var zodiacSign2 = zodiacSign.toUpperCase();
-    // console.log(zodiacSign2);
     zodiacSign2 = zodiacSign2.substring(0, 1)
     zodiacSign2 = zodiacSign2 + zodiacSign.substring(1, zodiacSign.length);
     return zodiacSign2;
