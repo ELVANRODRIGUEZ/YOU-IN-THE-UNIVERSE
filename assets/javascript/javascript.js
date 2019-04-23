@@ -400,6 +400,13 @@ $(document).ready(function () {
     var wwoKey = "f3c0e6294ea74179b6845818191104";
 
     var dateEntered;
+
+    var cityEntered;
+    var countryEntered;
+    var qryCity;
+    var locFormat;
+    var locatSwitch = false;
+
     var zodiacSign = "";
 
 
@@ -412,6 +419,8 @@ $(document).ready(function () {
         zodiacSign = "";
         dateEntered = "";
         $("#enterDateInput").val("");
+        $("[aria-label=city]").val("");
+        $("[aria-label=country]").val("");
         window.scrollTo(0, 0);
     })
 
@@ -441,17 +450,26 @@ $(document).ready(function () {
         event.preventDefault();
 
         dateEntered = moment($("#enterDateInput").val());
+        cityEntered = $("[aria-label=city]").val();
+        countryEntered = $("[aria-label=country]").val();
+        qryCity = cityEntered + "," + countryEntered;
 
         var futureDate = dateEntered.fromNow();
         futureDate = futureDate.substring(0, 2);
 
         var greater1900 = parseInt(dateEntered.format("YYYY"));
 
-        if (dateEntered._d == "Invalid Date") {
+        if (
+            dateEntered._d == "Invalid Date" ||
+            cityEntered == "" ||
+            countryEntered == ""
+        ) {
             $("#dateErrMsg").find("*").removeClass("fas fa-times");
             $("#derr1").addClass("fas fa-times");
             $("#exampleModalCenter").modal();
             $("#enterDateInput").val("");
+            $("[aria-label=city]").val("");
+            $("[aria-label=country]").val("");
 
         } else if (futureDate == "in") {
             $("#dateErrMsg").find("*").removeClass("fas fa-times");
@@ -614,7 +632,7 @@ $(document).ready(function () {
 
             solarFlare(); // SOLAR FLARE>> Retrieves solar flares that occured the closest to your last decade transition through an Ajax call function.
 
-            sunMoon(); // SUN AND MOON INFO>> Retrieves information about the sunrise, sunsen, moonrise, moonset and lunar phase at the iput birthdate through an Ajax call function.
+            sunMoon(qryCity); // SUN AND MOON INFO>> Retrieves information about the sunrise, sunsen, moonrise, moonset and lunar phase at the iput birthdate through an Ajax call function.
 
             birthAsteroids(); // BIRTH ASTEROIDS INFO>> Retrieves the 5 closest asteroids at the iput birthdate through an Ajax call function.
 
@@ -950,9 +968,12 @@ $(document).ready(function () {
 
     }
 
-    function sunMoon() {
+    function sunMoon(city) {
         var sunMoonDate = dateEntered.format("YYYY-MM-DD");
-        sunMoonQryURL = "https://api.worldweatheronline.com/premium/v1/astronomy.ashx?key=" + wwoKey + "&q=19.432608,-99.133209&date=" + sunMoonDate + "&format=json"
+        sunMoonQryURL =
+            "https://api.worldweatheronline.com/premium/v1/astronomy.ashx?key=" +
+            wwoKey + "&q=" + getCoord(city) + "=" +
+            sunMoonDate + "&format=json";
 
         // Create an AJAX call to retrieve data Log the data in console
         $.ajax({
@@ -964,6 +985,8 @@ $(document).ready(function () {
             var moonset = resp.data.time_zone[0].moonset;
             var sunrise = resp.data.time_zone[0].sunrise;
             var sunset = resp.data.time_zone[0].sunset;
+
+
 
             $("#sunInfo").html(
                 "<ul>" +
@@ -1070,5 +1093,56 @@ $(document).ready(function () {
         return dateMonth + dateDay;
     }
 
+    function getCoord(city) {
+        $.ajax({
+            url: 'https://api.opencagedata.com/geocode/v1/json',
+            method: 'GET',
+            data: {
+                'key': '9b18e4e7c5df4dbabb26095e66651862',
+                'q': city,
+                'no_annotations': 1
+                // see other optional params:
+                // https://opencagedata.com/api#forward-opt
+            },
+            dataType: 'json',
+            statusCode: {
+                200: function (resp) { // success
+                    var locLat;
+                    var locLong;
+
+                    if (resp.results.length == 0) {
+                        locFormat = "Mexico City, Mexico"
+                        locLat = 19.4287;
+                        locLong = -99.1276;
+                        if (!locatSwitch) {
+                            
+                            $("#exampleModalCenter2").modal();
+                            locatSwitch = true;
+                        }
+
+                    } else {
+                        locFormat = resp.results[0].formatted
+                        locLat = resp.results[0].geometry.lat;
+                        locLong = resp.results[0].geometry.lng;
+
+                    }
+                    $(".sunMoonLocat").text(
+                        "Information at: " +
+                        locFormat +
+                        "."
+                    );
+                    
+                    return locLat + "," + locLong;
+
+                },
+                402: function () {
+                    console.log('hit free-trial daily limit');
+                    console.log('become a customer: https://opencagedata.com/pricing');
+                }
+                // other possible response codes:
+                // https://opencagedata.com/api#codes
+            }
+        });
+    }
 
 })
