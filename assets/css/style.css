@@ -254,6 +254,7 @@ h1 {
 
 #exampleModalCenter {
     background-image: url(../images/Fondos/universe.jpg);
+    background-size: cover;
 }
 
 .modal-content {
