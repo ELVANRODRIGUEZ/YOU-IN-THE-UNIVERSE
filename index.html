@@ -32,7 +32,8 @@
     <link rel="stylesheet" href="assets/css/style.css">
 
     <!-- link to FontAwesome -->
-    <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.8.1/css/all.css" integrity="sha384-50oBUHEmvpQ+1lW4y57PTFmhCaXp0ML5d60M1M7uH2+nqUivzIebhndOJK28anvf" crossorigin="anonymous">
+    <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.8.1/css/all.css"
+        integrity="sha384-50oBUHEmvpQ+1lW4y57PTFmhCaXp0ML5d60M1M7uH2+nqUivzIebhndOJK28anvf" crossorigin="anonymous">
 
     <!-- Firebase Reference -->
     <script src="https://www.gstatic.com/firebasejs/5.9.4/firebase.js"></script>
@@ -47,7 +48,7 @@
 
 <body>
 
-    <!-- Modal -->
+    <!-- Modal for wrong data-->
     <div class="modal fade" id="exampleModalCenter" tabindex="-1" role="dialog"
         aria-labelledby="exampleModalCenterTitle" aria-hidden="true">
         <div class="modal-dialog modal-dialog-centered" role="document">
@@ -64,7 +65,7 @@
                     </p>
                     <ul>
                         <p class="luck">
-                            <i id="derr1"></i> Date cannot be empty.
+                            <i id="derr1"></i> Birth data cannot be empty.
                         </p>
                         <p class="luck">
                             <i id="derr2"></i> Date can only be past dates.
@@ -77,10 +78,29 @@
                         </p>
                     </ul>
                 </div>
-                <!-- <div class="modal-footer">
-                    <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
-                    <button type="button" class="btn btn-primary">Save changes</button>
-                </div> -->
+                
+            </div>
+        </div>
+    </div>
+    
+    <!-- Modal for unfound location-->
+    <div class="modal fade" id="exampleModalCenter2" tabindex="-1" role="dialog"
+        aria-labelledby="exampleModalCenterTitle" aria-hidden="true">
+        <div class="modal-dialog modal-dialog-centered" role="document">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <h5 class="modal-title" id="exampleModalCenterTitle">Location is not found</h5>
+                    <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                        <span aria-hidden="true" class="fas fa-times"></span>
+                    </button>
+                </div>
+                <div id="dateErrMsg" class="modal-body">
+                    <p class="luck">
+                        Mexico City will be taken as location instead.<br>
+                        Or press "YOU IN THE UNIVERSE" header <br>
+                        to go back to main slide and enter data again.
+                    </p>
+                </div>
             </div>
         </div>
     </div>
@@ -188,8 +208,15 @@
             <div class="col-md-5 d-flex align-items-center justify-content-center">
                 <div id="horoscopeInputImage" class="text-center">
                     <br>
-                    <form id="enterDateForm" action="">
-                        <p id="bdayText">Enter your Birthdate: </p>
+                    <form class="text-center" id="enterDateForm" action="">
+                        <p id="bdayText">Enter your Birth data: </p>
+                        <div class="enterInfoGroup">
+                            <p class="enterInfoTag">City</p><input type="text" aria-label="city" class="enterInfo">
+                        </div>
+                        <div class="enterInfoGroup">
+                            <p class="enterInfoTag">Country</p><input type="text" aria-label="country"
+                                class="enterInfo">
+                        </div><br>
                         <input id="enterDateInput" type="date" name="bdaytime">
                         <input id="enterDateGo" type="submit" value="Go">
                     </form>
@@ -348,8 +375,8 @@
 
             <div class="col-md-5 text-center">
                 <h2 class="slideHeaders">Your birth Sun</h2>
+                <p class="luck sunMoonLocat"></p>
                 <img id="sunPic" src="assets/images/sunrise.png" alt="Sun" height="auto" width="100%">
-
                 <div id="sunInfo" class="text-left">
 
                 </div>
@@ -361,6 +388,7 @@
 
             <div class="col-md-5 text-center">
                 <h2 class="slideHeaders">Your birth Moon</h2>
+                <p class="luck sunMoonLocat"></p>
                 <img id="moonPic" src="assets/images/Fases_Lunares/New Moon.png" alt="Moon" height="auto" width="100%">
 
                 <div id="moonInfo" class="text-left">
