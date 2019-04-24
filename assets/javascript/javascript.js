@@ -1271,8 +1271,6 @@ $(document).ready(function () {
             $img.attr("src", resp.url);
             $imgTitle.text(resp.title);
 
-            console.log($img.attr("src"));
-            console.log($imgTitle.text());
 
         });
 
