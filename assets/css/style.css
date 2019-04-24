@@ -537,6 +537,8 @@ h1 {
 }
 
 .carousel-caption {
+    /* position: absolute;
+    top: 0; */
     background-color: black;
     opacity: .5;
     padding-top: 7px;
