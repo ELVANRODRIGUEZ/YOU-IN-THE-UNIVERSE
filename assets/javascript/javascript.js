@@ -409,12 +409,13 @@ $(document).ready(function () {
 
     var zodiacSign = "";
 
-
+    var imgUrl;
+    var imgTitle;
 
     // ============================================== EVENTS
 
-    $("#Slide1, #Slide2, #Slide3, #Slide4, #Slide5, #Slide6, #Slide7").on("click", function () {
-        $(".enterDate, .horosResp, .chineseEgiptianHoro, .earthPic, .solarFlare, .sunMoon, .yourAsteroids").css("display", "none");
+    $("#Slide1, #Slide2, #Slide3, #Slide4, #Slide5, #Slide6, #Slide7, #Slide8").on("click", function () {
+        $(".enterDate, .horosResp, .chineseEgiptianHoro, .earthPic, .solarFlare, .sunMoon, .yourAsteroids, .pictures").css("display", "none");
         $(".horosSelect").css("display", "block");
         zodiacSign = "";
         dateEntered = "";
@@ -448,7 +449,6 @@ $(document).ready(function () {
 
     $("#enterDateGo").on("click", function (event) {
         event.preventDefault();
-
         dateEntered = moment($("#enterDateInput").val());
         cityEntered = $("[aria-label=city]").val();
         countryEntered = $("[aria-label=country]").val();
@@ -653,6 +653,34 @@ $(document).ready(function () {
 
     $(".arrowRight").on("click", function () {
         var slideRef = $(this).attr("ref");
+
+        // ================= TEST TO AVOID WRONG EXTENSIONS
+
+        // if (slideRef == "Slide7") {
+
+        //     var imgUrlSplit = imgUrl.split(".");
+        //     var imgUrlExt = imgUrlSplit[imgUrlSplit.length - 1];
+        //     console.log(imgUrlSplit[imgUrlSplit.length - 1]);
+        //     if (
+        //         imgUrlExt != "jpg" ||
+        //         imgUrlExt != "gif" ||
+        //         imgUrlExt != "tiff" ||
+        //         imgUrlExt != "bmp" ||
+        //         imgUrlExt != "ico" ||
+        //         imgUrlExt != "png"
+
+        //     ) {
+        //         rndmSlideNum = Math.floor(Math.random() * (10 - 1) + 1);
+        //         rndmSlide =
+        //             "assets/images/CosmicAlbum/" +
+        //             rndmSlideNum + ".jpg";
+        //         $img.attr("src", rndmSlide);
+        //     }
+        // }
+
+        // ================= TEST TO AVOID WRONG EXTENSIONS
+
+
         var next = parseInt(slideRef.substring(slideRef.length, slideRef.length - 1)) + 1;
         var prev = parseInt(slideRef.substring(slideRef.length, slideRef.length - 1)) - 1;
         var $nextSlide = "#" + slideRef.substring(0, slideRef.length - 1) + next;
@@ -672,7 +700,6 @@ $(document).ready(function () {
         window.scrollTo(0, 0);
 
     })
-
 
 
     // ============================================== FUNCTIONS
@@ -1115,7 +1142,7 @@ $(document).ready(function () {
                         locLat = 19.4287;
                         locLong = -99.1276;
                         if (!locatSwitch) {
-                            
+
                             $("#exampleModalCenter2").modal();
                             locatSwitch = true;
                         }
@@ -1131,7 +1158,7 @@ $(document).ready(function () {
                         locFormat +
                         "."
                     );
-                    
+
                     return locLat + "," + locLong;
 
                 },
@@ -1145,4 +1172,117 @@ $(document).ready(function () {
         });
     }
 
-})
+    function imageOfDay($img, $imgTitle) {
+
+        function determineDate(baseYear, baseMonth, baseDay) {
+
+            var dateYear = parseInt(moment().format("YYYY"));
+            var dateMonth = parseInt(moment().format("MM"));
+            var dateDay = parseInt(moment().format("DD"));
+
+            var randomYear = Math.floor(Math.random() * (dateYear - baseYear) + baseYear);
+            var randomMonth;
+            var randomDay;
+
+            if (randomYear == dateYear) {
+                randomMonth = Math.floor(Math.random() * (dateMonth - 1) + 1);
+
+            } else if (randomYear == baseYear) {
+                randomMonth = Math.floor(Math.random() * (12 - baseMonth) + baseMonth);
+
+            } else {
+                randomMonth = Math.floor(Math.random() * (12 - 1) + 1);
+
+            }
+
+            if (randomYear == dateYear && randomMonth == dateMonth) {
+                randomDay = Math.floor(Math.random() * (dateDay - 1) + 1);
+
+            } else if (randomYear == 1995 && randomMonth == baseMonth) {
+                randomDay = Math.floor(Math.random() * (30 - baseDay) + baseDay);
+
+            } else {
+                if (
+                    randomMonth == 1 ||
+                    randomMonth == 3 ||
+                    randomMonth == 5 ||
+                    randomMonth == 7 ||
+                    randomMonth == 8 ||
+                    randomMonth == 10 ||
+                    randomMonth == 12
+                ) {
+                    randomDay = Math.floor(Math.random() * (31 - 1) + 1);
+                } else if (
+                    randomMonth == 4 ||
+                    randomMonth == 6 ||
+                    randomMonth == 9 ||
+                    randomMonth == 11
+                ) {
+                    randomDay = Math.floor(Math.random() * (30 - 1) + 1);
+                } else {
+                    randomDay = Math.floor(Math.random() * (28 - 1) + 1);
+                }
+            }
+
+            randomYear = randomYear.toString();
+            if (randomMonth < 10) {
+                randomMonth = "0" + randomMonth.toString();
+            } else {
+                randomMonth = randomMonth.toString();
+            }
+            if (randomDay < 10) {
+                randomDay = "0" + randomDay.toString();
+            } else {
+                randomDay = randomDay.toString();
+            }
+
+            var date = randomYear + "-" + randomMonth + "-" + randomDay;
+            return date;
+        }
+
+        var imageOfDayqry = "https://api.nasa.gov/planetary/apod?" +
+            "date=" + determineDate(1995, 6, 16) + "&api_key=" + nasaKey;
+
+        var rndmSlideNum;
+        var rndmSlide;
+
+        $.ajax({
+
+            url: imageOfDayqry,
+            method: "GET",
+            error: function () {
+                rndmSlideNum = Math.floor(Math.random() * (10 - 1) + 1);
+                rndmSlide =
+                    "assets/images/CosmicAlbum/" +
+                    rndmSlideNum + ".jpg";
+                $img.attr("src", rndmSlide);
+                $img.attr("src", rndmSlide);
+            },
+            crossDomain: function () {
+                rndmSlideNum = Math.floor(Math.random() * (10 - 1) + 1);
+                rndmSlide =
+                    "assets/images/CosmicAlbum/" +
+                    rndmSlideNum + ".jpg";
+                $img.attr("src", rndmSlide);
+            }
+
+        }).then(function (resp) {
+            
+            $img.attr("src", resp.url);
+            $imgTitle.text(resp.title);
+
+
+        });
+
+    }
+
+    for (var i = 1; i < 11; i++) {
+
+        var $img = $("#img" + i);
+        var $imgTitle = $("#imgTitle" + i);
+
+        imageOfDay($img, $imgTitle);
+
+    }
+
+});
