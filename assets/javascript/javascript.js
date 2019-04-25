@@ -169,7 +169,7 @@ $(document).ready(function () {
         }
 
         Object.keys(chineseHoro).forEach(function (item) {
-            console.log(chineseHoro[item].chineseLuck.chineseLuckyNumbers);
+            // console.log(chineseHoro[item].chineseLuck.chineseLuckyNumbers);
             database.ref("chineseHoro").push({
                 chineseSign: chineseHoro[item].chineseSign,
                 chineseStartYear: chineseHoro[item].chineseStartYear,
@@ -376,7 +376,7 @@ $(document).ready(function () {
         }
 
         Object.keys(egiptianHoro).forEach(function (item) {
-            console.log(egiptianHoro[item].egiptianSign);
+            // console.log(egiptianHoro[item].egiptianSign);
             database.ref("egiptianHoro").push({
                 egiptianSign: egiptianHoro[item].egiptianSign,
                 egiptianSignPeriod: egiptianHoro[item].egiptianSignPeriod,
@@ -404,6 +404,9 @@ $(document).ready(function () {
     var cityEntered;
     var countryEntered;
     var qryCity;
+    var locLat;
+    var locLong;
+    var locCoordinates;
     var locFormat;
     var locatSwitch = false;
 
@@ -626,13 +629,15 @@ $(document).ready(function () {
 
             $(".enterDate").css("display", "none");
 
+            getCoord(qryCity)   // GET COORDINATES>> Retrieves in coordinates the entered Location.
+
             westernHoro(); // WESTERN HOROSCOPE>> Retrieves Western Horoscope through an Ajax call function.
 
             earthPic(); // EARTH PICTURE>> Retrieves Earth pictures of specified birthday through an Ajax call function.
 
             solarFlare(); // SOLAR FLARE>> Retrieves solar flares that occured the closest to your last decade transition through an Ajax call function.
 
-            sunMoon(qryCity); // SUN AND MOON INFO>> Retrieves information about the sunrise, sunsen, moonrise, moonset and lunar phase at the iput birthdate through an Ajax call function.
+            // sunMoon(); // SUN AND MOON INFO>> Retrieves information about the sunrise, sunsen, moonrise, moonset and lunar phase at the iput birthdate through an Ajax call function.
 
             birthAsteroids(); // BIRTH ASTEROIDS INFO>> Retrieves the 5 closest asteroids at the iput birthdate through an Ajax call function.
 
@@ -995,13 +1000,12 @@ $(document).ready(function () {
 
     }
 
-    function sunMoon(city) {
+    function sunMoon(coordinates) {
         var sunMoonDate = dateEntered.format("YYYY-MM-DD");
         sunMoonQryURL =
             "https://api.worldweatheronline.com/premium/v1/astronomy.ashx?key=" +
-            wwoKey + "&q=" + getCoord(city) + "=" +
+            wwoKey + "&q=" + coordinates + "&date=" +
             sunMoonDate + "&format=json";
-
         // Create an AJAX call to retrieve data Log the data in console
         $.ajax({
             url: sunMoonQryURL,
@@ -1134,8 +1138,6 @@ $(document).ready(function () {
             dataType: 'json',
             statusCode: {
                 200: function (resp) { // success
-                    var locLat;
-                    var locLong;
 
                     if (resp.results.length == 0) {
                         locFormat = "Mexico City, Mexico"
@@ -1159,7 +1161,9 @@ $(document).ready(function () {
                         "."
                     );
 
-                    return locLat + "," + locLong;
+                    locCoordinates = locLat + "," + locLong;
+
+                    sunMoon(locCoordinates);    
 
                 },
                 402: function () {
@@ -1267,7 +1271,7 @@ $(document).ready(function () {
             }
 
         }).then(function (resp) {
-            
+
             $img.attr("src", resp.url);
             $imgTitle.text(resp.title);
 
