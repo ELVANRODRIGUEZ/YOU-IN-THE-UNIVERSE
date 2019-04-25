@@ -7,6 +7,7 @@ body {
     background-image: url(../images/Fondos/fondo.png);
     background-size: 100%;
     background-repeat: repeat-y;
+    /* background-color: rgb(173, 173, 173); */
 
 }
 
@@ -421,7 +422,14 @@ h1 {
 
 #earthPic {
     margin-top: 35px;
-    clip-path: circle(39% at center);
+    clip-path: circle(40% at center);
+}
+
+@media only screen and (max-width: 767px) {
+    #earthPic {
+        margin-top: 35px;
+        clip-path: circle(37% at center);
+    }
 }
 
 
