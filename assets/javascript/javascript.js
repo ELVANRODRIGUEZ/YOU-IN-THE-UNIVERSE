@@ -414,7 +414,6 @@ $(document).ready(function () {
 
     var imgUrl;
     var imgTitle;
-
     // ============================================== EVENTS
 
     $("#Slide1, #Slide2, #Slide3, #Slide4, #Slide5, #Slide6, #Slide7, #Slide8").on("click", function () {
@@ -825,25 +824,43 @@ $(document).ready(function () {
     }
 
     function earthPic() {
-        var referenceDate = dateEntered.format("MM-DD");
-        referenceDate = "2018-" + referenceDate;
+        var referenceYear;
+        if (moment().format("MM") - dateEntered.format("MM") > 0) {
+            referenceYear = moment().format("YYYY") - dateEntered.format("YYYY");
+        } else if (
+            moment().format("DD") - dateEntered.format("DD") > 0
+        ) {
+            referenceYear = moment().format("YYYY") - dateEntered.format("YYYY");
+        } else {
+            referenceYear = moment().format("YYYY") - dateEntered.format("YYYY");
+            referenceYear = referenceYear - 1;
+        }
+        var referenceDate = dateEntered.add(referenceYear, "y");
 
-        var dateForEarthImg = dateEntered.format("MM/DD");
-        dateForEarthImg = "2018/" + dateForEarthImg;
+        var dateForEarthImg = referenceDate.format("YYYY/MM/DD");
+        var refDateFormatted = referenceDate.format("YYYY-MM-DD");
 
-        erthPicQryURL = "https://api.nasa.gov/EPIC/api/natural/date/" + referenceDate + "?api_key=" + nasaKey;
+        erthPicQryURL = "https://api.nasa.gov/EPIC/api/natural/date/" + refDateFormatted + "?api_key=" + nasaKey;
 
         // Create an AJAX call to retrieve data Log the data in console
         $.ajax({
             url: erthPicQryURL,
             method: "GET"
         }).then(function (resp) {
+            console.log(resp);
+            var rndmImage = resp.length;
+            rndmImage = Math.floor(Math.random() * rndmImage);
+            console.log(rndmImage);
             var earthImgAddress =
                 "https://epic.gsfc.nasa.gov/archive/natural/" + dateForEarthImg +
-                "/png/" + resp[0].image +
+                "/png/" + resp[rndmImage].image +
                 ".png";
 
             $("#earthPic").attr("src", earthImgAddress);
+            $("#earthPicInfo").text(
+                "This is an earth picture taken by NASA's Deep Space Climate Observatory satellite on your last birthday (" +
+                referenceDate.format("MMMM, DD YYYY") + ")."
+            )
         })
 
 
@@ -1287,6 +1304,6 @@ $(document).ready(function () {
 
         imageOfDay($img, $imgTitle);
 
-    }
+    };
 
 });
