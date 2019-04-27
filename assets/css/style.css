@@ -420,13 +420,17 @@ h1 {
 
 }
 
-#earthPic {
+.earthImg {
     margin-top: 35px;
     clip-path: circle(40% at center);
 }
 
+.vh-70 {
+    height: 70vp;
+}
+
 @media only screen and (max-width: 767px) {
-    #earthPic {
+    #earthImg {
         margin-top: 35px;
         clip-path: circle(37% at center);
     }

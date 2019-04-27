@@ -628,7 +628,7 @@ $(document).ready(function () {
 
             $(".enterDate").css("display", "none");
 
-            getCoord(qryCity)   // GET COORDINATES>> Retrieves in coordinates the entered Location.
+            getCoord(qryCity) // GET COORDINATES>> Retrieves in coordinates the entered Location.
 
             westernHoro(); // WESTERN HOROSCOPE>> Retrieves Western Horoscope through an Ajax call function.
 
@@ -851,16 +851,75 @@ $(document).ready(function () {
             var rndmImage = resp.length;
             rndmImage = Math.floor(Math.random() * rndmImage);
             console.log(rndmImage);
-            var earthImgAddress =
-                "https://epic.gsfc.nasa.gov/archive/natural/" + dateForEarthImg +
-                "/png/" + resp[rndmImage].image +
-                ".png";
 
-            $("#earthPic").attr("src", earthImgAddress);
+            var earthImgAddress;
+            var earthCentLat;
+            var earthCentLon;
+
+
             $("#earthPicInfo").text(
-                "This is an earth picture taken by NASA's Deep Space Climate Observatory satellite on your last birthday (" +
+                "These are all around earth pictures taken by NASA's Deep Space Climate Observatory satellite on your last birthday (" +
                 referenceDate.format("MMMM, DD YYYY") + ")."
             )
+
+            for (var i = 0; i < resp.length; i++) {
+
+                earthImgAddress =
+                    "https://epic.gsfc.nasa.gov/archive/natural/" + dateForEarthImg +
+                    "/png/" + resp[i].image +
+                    ".png";
+
+                earthCentLat = resp[i].centroid_coordinates.lat;
+                earthCentLat = earthCentLat.toFixed(4);
+                earthCentLon = resp[i].centroid_coordinates.lat;
+                earthCentLon = earthCentLon.toFixed(4);
+
+                if (i == 0) {
+
+                    $("#earthPicCaroInd").append(
+                        "<li data-target'#earthPicCarousel' data-slide-to='" +
+                        i + "' class='active'></li>"
+                    );
+                    $("#earthPicCarImgSlots").append(
+                        "<div class='carousel-item vh-70 active'>" +
+                        "<img id='earthPic" + i + "' src='" + earthImgAddress +
+                        "' class='earthImg' alt='earthPic" + i +
+                        "' width='100%'> " +
+                        "<div class='carousel-caption d-md-block'> " +
+                        "<h4 class='noMargTitle' id='earthPicTitle" + i +
+                        "'>Centroid Coord Lat: " +
+                        earthCentLat +
+                        "  Lon: " + earthCentLon +
+                        "</h4>" +
+                        "</div>" +
+                        "</div>"
+                    )
+
+                } else {
+                    $("#earthPicCaroInd").append(
+                        "<li data-target'#earthPicCarousel' data-slide-to='" +
+                        i + "'></li>"
+                    );
+                    $("#earthPicCarImgSlots").append(
+                        "<div class='carousel-item vh-70'>" +
+                        "<img id='earthPic" + i + "' src='" + earthImgAddress +
+                        "' class='earthImg' alt='earthPic" + i +
+                        "' width='100%'> " +
+                        "<div class='carousel-caption d-md-block'> " +
+                        "<h4 class='noMargTitle' id='earthPicTitle" + i +
+                        "'>Centroid Coord Lat: " +
+                        earthCentLat +
+                        " Lon: " + earthCentLon +
+                        "</h4>" +
+                        "</div>" +
+                        "</div>"
+                    )
+                }
+
+                // var $EarthPic = $("#earthPic" + i);
+                // $EarthPic.attr("src", earthImgAddress);
+
+            }
         })
 
 
@@ -1180,7 +1239,7 @@ $(document).ready(function () {
 
                     locCoordinates = locLat + "," + locLong;
 
-                    sunMoon(locCoordinates);    
+                    sunMoon(locCoordinates);
 
                 },
                 402: function () {
