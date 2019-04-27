@@ -68,13 +68,16 @@
                             <i id="derr1"></i> Birth data cannot be empty.
                         </p>
                         <p class="luck">
-                            <i id="derr2"></i> Date can only be past dates.
+                            <i id="derr2"></i> Birth date needs to be a valid date.
                         </p>
                         <p class="luck">
-                            <i id="derr3"></i> Date needs to correspond the selected horoscope.
+                            <i id="derr3"></i> Date can only be past dates.
                         </p>
                         <p class="luck">
-                            <i id="derr4"></i> Date needs to be from 1900 onwards.
+                            <i id="derr4"></i> Date needs to correspond the selected horoscope.
+                        </p>
+                        <p class="luck">
+                            <i id="derr5"></i> Date needs to be from 1900 onwards.
                         </p>
                     </ul>
                 </div>
@@ -207,8 +210,22 @@
                         <div class="enterInfoGroup">
                             <p class="enterInfoTag">Country</p><input type="text" aria-label="country"
                                 class="enterInfo">
-                        </div><br>
-                        <input id="enterDateInput" type="date" name="bdaytime">
+                        </div>
+                        <div id="birthDateCont" class="d-flex justify-content-between">
+                            <div class="enterInfoGroup2">
+                                <p class="enterInfoTag2">Year</p><input type="number" aria-label="birthYear"
+                                    class="enterInfo2">
+                            </div>
+                            <div class="enterInfoGroup2">
+                                <p class="enterInfoTag2">Month</p><input type="number" aria-label="birthMonth"
+                                    class="enterInfo2">
+                            </div>
+                            <div class="enterInfoGroup2">
+                                <p class="enterInfoTag2">Day</p><input type="number" aria-label="birthDay"
+                                    class="enterInfo2">
+                            </div>
+                        </div>
+                        <!-- <input id="enterDateInput" type="date" name="bdaytime"> -->
                         <input id="enterDateGo" type="submit" value="Go">
                     </form>
                 </div>
