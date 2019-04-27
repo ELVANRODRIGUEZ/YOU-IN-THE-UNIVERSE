@@ -219,7 +219,7 @@ h1 {
     margin: 10px 0px 0px 0px;
     border: solid 0px black;
     border-radius: 0px 7px 7px 0px;
-    font-size: 16px;
+    font-size: 14px;
     padding: 2px 10px;
 
 }
@@ -231,28 +231,57 @@ h1 {
     border: solid 0px black;
     border-radius: 7px 0px 0px 7px;
     background-color: #e9ecef;
-    font-size: 16px;
+    font-size: 14px;
     padding: 2px 10px;
 }
 
-#enterDateInput {
-    width: calc(100% - 45px);
-    max-width: calc(300px - 45px);
-    margin-top: 10px;
+#birthDateCont {
+    margin: 0px;
+    width: 100%;
+    max-width: 300px;
+    margin: 0 auto;
+
+}
+
+.enterInfoGroup2 {
+    width: 30%;
+    max-width: 100px;
+    /* display: inline-block; */
+}
+
+.enterInfo2 {
+    width: 100%;
+    /* display: inline-block; */
+    margin: 0px;
     border: solid 0px black;
-    border-radius: 7px;
-    font-size: 16px;
+    border-radius: 0px 0px 7px 7px;
+    font-size: 14px;
     padding: 2px 10px;
 
 }
+
+.enterInfoTag2 {
+    /* display: inline-block; */
+    width: 100%;
+    margin: 10px 0px 0px 0px;
+    border: solid 0px black;
+    border-radius: 7px 7px 0px 0px;
+    background-color: #e9ecef;
+    font-size: 14px;
+    padding: 2px 10px;
+}
+
+
 
 #enterDateGo {
-    width: 40px;
+    width: 30%;
+    max-width: 90px;
     margin-top: 10px;
     background-color: white;
     border: solid 0px black;
     border-radius: 7px;
-    font-size: 16px;
+    font-size: 14px;
+    font-weight: bolder;
     padding: 2px 10px;
     /* height: 30px; */
 }
@@ -422,7 +451,7 @@ h1 {
 
 .earthImg {
     margin-top: 35px;
-    clip-path: circle(40% at center);
+    clip-path: circle(39% at center);
 }
 
 .vh-70 {

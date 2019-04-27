@@ -421,9 +421,11 @@ $(document).ready(function () {
         $(".horosSelect").css("display", "block");
         zodiacSign = "";
         dateEntered = "";
-        $("#enterDateInput").val("");
         $("[aria-label=city]").val("");
         $("[aria-label=country]").val("");
+        $('[aria-label="birthYear"]').val("");
+        $('[aria-label="birthMonth"]').val("");
+        $('[aria-label="birthDay"]').val("");
         window.scrollTo(0, 0);
     })
 
@@ -451,7 +453,16 @@ $(document).ready(function () {
 
     $("#enterDateGo").on("click", function (event) {
         event.preventDefault();
-        dateEntered = moment($("#enterDateInput").val());
+
+        dateEntered =
+            // '"' + 
+            $('[aria-label="birthYear"]').val() + "-" +
+            $('[aria-label="birthMonth"]').val() + "-" +
+            $('[aria-label="birthDay"]').val();
+        dateEntered = dateEntered.toString();
+
+        dateEntered = moment(dateEntered, "YYYY-MM-DD");
+
         cityEntered = $("[aria-label=city]").val();
         countryEntered = $("[aria-label=country]").val();
         qryCity = cityEntered + "," + countryEntered;
@@ -462,34 +473,50 @@ $(document).ready(function () {
         var greater1900 = parseInt(dateEntered.format("YYYY"));
 
         if (
-            dateEntered._d == "Invalid Date" ||
+            $('[aria-label="birthYear"]').val() == "" ||
+            $('[aria-label="birthMonth"]').val() == "" ||
+            $('[aria-label="birthDay"]').val() == "" ||
             cityEntered == "" ||
             countryEntered == ""
         ) {
             $("#dateErrMsg").find("*").removeClass("fas fa-times");
             $("#derr1").addClass("fas fa-times");
             $("#exampleModalCenter").modal();
-            $("#enterDateInput").val("");
-            $("[aria-label=city]").val("");
-            $("[aria-label=country]").val("");
+            // $("#enterDateInput").val("");
+            // $("[aria-label=city]").val("");
+            // $("[aria-label=country]").val("");
 
-        } else if (futureDate == "in") {
+        } else if (dateEntered._d == "Invalid Date") {
             $("#dateErrMsg").find("*").removeClass("fas fa-times");
             $("#derr2").addClass("fas fa-times");
             $("#exampleModalCenter").modal();
-            $("#enterDateInput").val("");
+            $('[aria-label="birthYear"]').val("");
+            $('[aria-label="birthMonth"]').val("");
+            $('[aria-label="birthDay"]').val("");
 
-        } else if (zodiacSign != correspZodiacSign(dateEntered)) {
+        } else if (futureDate == "in") {
             $("#dateErrMsg").find("*").removeClass("fas fa-times");
             $("#derr3").addClass("fas fa-times");
             $("#exampleModalCenter").modal();
-            $("#enterDateInput").val("");
+            $('[aria-label="birthYear"]').val("");
+            $('[aria-label="birthMonth"]').val("");
+            $('[aria-label="birthDay"]').val("");
 
-        } else if (greater1900 < 1900) {
+        } else if (zodiacSign != correspZodiacSign(dateEntered)) {
             $("#dateErrMsg").find("*").removeClass("fas fa-times");
             $("#derr4").addClass("fas fa-times");
             $("#exampleModalCenter").modal();
-            $("#enterDateInput").val("");
+            $('[aria-label="birthYear"]').val("");
+            $('[aria-label="birthMonth"]').val("");
+            $('[aria-label="birthDay"]').val("");
+
+        } else if (greater1900 < 1900) {
+            $("#dateErrMsg").find("*").removeClass("fas fa-times");
+            $("#derr5").addClass("fas fa-times");
+            $("#exampleModalCenter").modal();
+            $('[aria-label="birthYear"]').val("");
+            $('[aria-label="birthMonth"]').val("");
+            $('[aria-label="birthDay"]').val("");
 
         } else {
             var yearEntered = parseInt(dateEntered.format("YYYY"));
@@ -824,6 +851,9 @@ $(document).ready(function () {
     }
 
     function earthPic() {
+        $("#earthPicCaroInd").empty();
+        $("#earthPicCarImgSlots").empty();
+
         var referenceYear;
         if (moment().format("MM") - dateEntered.format("MM") > 0) {
             referenceYear = moment().format("YYYY") - dateEntered.format("YYYY");
@@ -831,11 +861,14 @@ $(document).ready(function () {
             moment().format("DD") - dateEntered.format("DD") > 0
         ) {
             referenceYear = moment().format("YYYY") - dateEntered.format("YYYY");
+            referenceYear = referenceYear - 1;
+
         } else {
             referenceYear = moment().format("YYYY") - dateEntered.format("YYYY");
-            referenceYear = referenceYear - 1;
+            referenceYear = referenceYear - 2;
         }
-        var referenceDate = dateEntered.add(referenceYear, "y");
+        var referenceDate = dateEntered;
+        referenceDate = referenceDate.add(referenceYear, "y");
 
         var dateForEarthImg = referenceDate.format("YYYY/MM/DD");
         var refDateFormatted = referenceDate.format("YYYY-MM-DD");
@@ -847,10 +880,8 @@ $(document).ready(function () {
             url: erthPicQryURL,
             method: "GET"
         }).then(function (resp) {
-            console.log(resp);
             var rndmImage = resp.length;
             rndmImage = Math.floor(Math.random() * rndmImage);
-            console.log(rndmImage);
 
             var earthImgAddress;
             var earthCentLat;
@@ -871,13 +902,13 @@ $(document).ready(function () {
 
                 earthCentLat = resp[i].centroid_coordinates.lat;
                 earthCentLat = earthCentLat.toFixed(4);
-                earthCentLon = resp[i].centroid_coordinates.lat;
+                earthCentLon = resp[i].centroid_coordinates.lon;
                 earthCentLon = earthCentLon.toFixed(4);
 
                 if (i == 0) {
 
                     $("#earthPicCaroInd").append(
-                        "<li data-target'#earthPicCarousel' data-slide-to='" +
+                        "<li data-target='#earthPicCarousel' data-slide-to='" +
                         i + "' class='active'></li>"
                     );
                     $("#earthPicCarImgSlots").append(
@@ -897,7 +928,7 @@ $(document).ready(function () {
 
                 } else {
                     $("#earthPicCaroInd").append(
-                        "<li data-target'#earthPicCarousel' data-slide-to='" +
+                        "<li data-target='#earthPicCarousel' data-slide-to='" +
                         i + "'></li>"
                     );
                     $("#earthPicCarImgSlots").append(
@@ -942,7 +973,6 @@ $(document).ready(function () {
         var lastDecadeTrans = Math.floor(yearsDiff / 10) * 10;
 
         lastDecadeTrans = moment(dateEntered).add(lastDecadeTrans, "y");
-
         var solarFlareGenObj = {
             B: {
                 intensity: "",
@@ -983,12 +1013,13 @@ $(document).ready(function () {
             var dateEnd = moment(lastDecadeTrans).add(i, "y");
             dateEnd = dateEnd.format("YYYY-MM-DD");
             SolFlareQryURL = "https://api.nasa.gov/DONKI/FLR?startDate=" + dateInit + "&endDate=" + dateEnd + "&api_key=" + nasaKey;
+            // console.log(SolFlareQryURL);
 
             $.ajax({
                 url: SolFlareQryURL,
                 method: "GET"
             }).then(function (resp) {
-
+                // console.log(resp);
                 resp.forEach(function (item) {
 
                     var solarFlareMag = item.classType.substring(0, 1);
@@ -1252,7 +1283,7 @@ $(document).ready(function () {
         });
     }
 
-    function imageOfDay($img, $imgTitle) {
+    function imageOfDay($img, $imgTitle, counter) {
 
         function determineDate(baseYear, baseMonth, baseDay) {
 
@@ -1323,27 +1354,23 @@ $(document).ready(function () {
         var imageOfDayqry = "https://api.nasa.gov/planetary/apod?" +
             "date=" + determineDate(1995, 6, 16) + "&api_key=" + nasaKey;
 
-        var rndmSlideNum;
-        var rndmSlide;
+        var slide;
 
         $.ajax({
 
             url: imageOfDayqry,
             method: "GET",
             error: function () {
-                rndmSlideNum = Math.floor(Math.random() * (10 - 1) + 1);
-                rndmSlide =
+                slide =
                     "assets/images/CosmicAlbum/" +
-                    rndmSlideNum + ".jpg";
-                $img.attr("src", rndmSlide);
-                $img.attr("src", rndmSlide);
+                    counter + ".jpg";
+                $img.attr("src", slide);
             },
             crossDomain: function () {
-                rndmSlideNum = Math.floor(Math.random() * (10 - 1) + 1);
-                rndmSlide =
+                slide =
                     "assets/images/CosmicAlbum/" +
-                    rndmSlideNum + ".jpg";
-                $img.attr("src", rndmSlide);
+                    counter + ".jpg";
+                $img.attr("src", slide);
             }
 
         }).then(function (resp) {
@@ -1361,7 +1388,7 @@ $(document).ready(function () {
         var $img = $("#img" + i);
         var $imgTitle = $("#imgTitle" + i);
 
-        imageOfDay($img, $imgTitle);
+        imageOfDay($img, $imgTitle, i);
 
     };
 
