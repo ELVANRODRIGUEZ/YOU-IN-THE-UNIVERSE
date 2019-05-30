@@ -393,13 +393,10 @@ $(document).ready(function () {
     }
 
 
-
     // ============================================== GLOBAL VARIABLES
 
     var nasaKey = "6rXbj632uYc9OI6eFA9OERlhwIJKTAuMjM7khNVl";
     var wwoKey = "f3c0e6294ea74179b6845818191104";
-
-    var dateEntered;
 
     var cityEntered;
     var countryEntered;
@@ -414,13 +411,15 @@ $(document).ready(function () {
 
     var imgUrl;
     var imgTitle;
+
+    
     // ============================================== EVENTS
 
     $("#Slide1, #Slide2, #Slide3, #Slide4, #Slide5, #Slide6, #Slide7, #Slide8").on("click", function () {
         $(".enterDate, .horosResp, .chineseEgiptianHoro, .earthPic, .solarFlare, .sunMoon, .yourAsteroids, .pictures").css("display", "none");
         $(".horosSelect").css("display", "block");
         zodiacSign = "";
-        dateEntered = "";
+        date = "";
         $("[aria-label=city]").val("");
         $("[aria-label=country]").val("");
         $('[aria-label="birthYear"]').val("");
@@ -454,23 +453,20 @@ $(document).ready(function () {
     $("#enterDateGo").on("click", function (event) {
         event.preventDefault();
 
-        dateEntered =
-            // '"' + 
-            $('[aria-label="birthYear"]').val() + "-" +
-            $('[aria-label="birthMonth"]').val() + "-" +
-            $('[aria-label="birthDay"]').val();
-        dateEntered = dateEntered.toString();
-
-        dateEntered = moment(dateEntered, "YYYY-MM-DD");
-
+        var date =
+            $('#bY[aria-label="birthYear"]').val() + "-" +
+            $('#bM[aria-label="birthMonth"]').val() + "-" +
+            $('#bD[aria-label="birthDay"]').val();
+            
         cityEntered = $("[aria-label=city]").val();
         countryEntered = $("[aria-label=country]").val();
         qryCity = cityEntered + "," + countryEntered;
 
-        var futureDate = dateEntered.fromNow();
+
+        var futureDate = moment(date, "YYYY-MM-DD").fromNow();
         futureDate = futureDate.substring(0, 2);
 
-        var greater1900 = parseInt(dateEntered.format("YYYY"));
+        var greater1900 = parseInt(moment(date, "YYYY-MM-DD").format("YYYY"));
 
         if (
             $('[aria-label="birthYear"]').val() == "" ||
@@ -482,11 +478,8 @@ $(document).ready(function () {
             $("#dateErrMsg").find("*").removeClass("fas fa-times");
             $("#derr1").addClass("fas fa-times");
             $("#exampleModalCenter").modal();
-            // $("#enterDateInput").val("");
-            // $("[aria-label=city]").val("");
-            // $("[aria-label=country]").val("");
 
-        } else if (dateEntered._d == "Invalid Date") {
+        } else if (moment(date, "YYYY-MM-DD")._d == "Invalid Date") {
             $("#dateErrMsg").find("*").removeClass("fas fa-times");
             $("#derr2").addClass("fas fa-times");
             $("#exampleModalCenter").modal();
@@ -502,7 +495,7 @@ $(document).ready(function () {
             $('[aria-label="birthMonth"]').val("");
             $('[aria-label="birthDay"]').val("");
 
-        } else if (zodiacSign != correspZodiacSign(dateEntered)) {
+        } else if (zodiacSign != correspZodiacSign(moment(date, "YYYY-MM-DD"))) {
             $("#dateErrMsg").find("*").removeClass("fas fa-times");
             $("#derr4").addClass("fas fa-times");
             $("#exampleModalCenter").modal();
@@ -519,10 +512,10 @@ $(document).ready(function () {
             $('[aria-label="birthDay"]').val("");
 
         } else {
-            var yearEntered = parseInt(dateEntered.format("YYYY"));
+            var yearEntered = parseInt(moment(date, "YYYY-MM-DD").format("YYYY"));
 
             knowChineseSign(yearEntered);
-            var dateForEgiptianHoro = dateToDouble(dateEntered);
+            var dateForEgiptianHoro = dateToDouble(moment(date, "YYYY-MM-DD"));
 
             function knowChineseSign(year) {
                 var numOfCicles = Math.floor((year - 1900) / 12);
@@ -655,17 +648,15 @@ $(document).ready(function () {
 
             $(".enterDate").css("display", "none");
 
-            getCoord(qryCity) // GET COORDINATES>> Retrieves in coordinates the entered Location.
+            getCoord(qryCity,moment(date, "YYYY-MM-DD")) // GET COORDINATES>> Retrieves in coordinates the entered Location.
 
             westernHoro(); // WESTERN HOROSCOPE>> Retrieves Western Horoscope through an Ajax call function.
 
-            earthPic(); // EARTH PICTURE>> Retrieves Earth pictures of specified birthday through an Ajax call function.
+            earthPic(moment(date, "YYYY-MM-DD")); // EARTH PICTURE>> Retrieves Earth pictures of specified birthday through an Ajax call function.
 
-            solarFlare(); // SOLAR FLARE>> Retrieves solar flares that occured the closest to your last decade transition through an Ajax call function.
+            solarFlare(moment(date, "YYYY-MM-DD")); // SOLAR FLARE>> Retrieves solar flares that occured the closest to your last decade transition through an Ajax call function.
 
-            // sunMoon(); // SUN AND MOON INFO>> Retrieves information about the sunrise, sunsen, moonrise, moonset and lunar phase at the iput birthdate through an Ajax call function.
-
-            birthAsteroids(); // BIRTH ASTEROIDS INFO>> Retrieves the 5 closest asteroids at the iput birthdate through an Ajax call function.
+            birthAsteroids(moment(date, "YYYY-MM-DD")); // BIRTH ASTEROIDS INFO>> Retrieves the 5 closest asteroids at the iput birthdate through an Ajax call function.
 
             var $constelImgCont = $("#constelImgCont")
 
@@ -850,24 +841,24 @@ $(document).ready(function () {
         })
     }
 
-    function earthPic() {
+    function earthPic(date) {
         $("#earthPicCaroInd").empty();
         $("#earthPicCarImgSlots").empty();
 
         var referenceYear;
-        if (moment().format("MM") - dateEntered.format("MM") > 0) {
-            referenceYear = moment().format("YYYY") - dateEntered.format("YYYY");
+        if (moment().format("MM") - date.format("MM") > 0) {
+            referenceYear = moment().format("YYYY") - date.format("YYYY");
         } else if (
-            moment().format("DD") - dateEntered.format("DD") > 0
+            moment().format("DD") - date.format("DD") > 0
         ) {
-            referenceYear = moment().format("YYYY") - dateEntered.format("YYYY");
+            referenceYear = moment().format("YYYY") - date.format("YYYY");
             referenceYear = referenceYear - 1;
 
         } else {
-            referenceYear = moment().format("YYYY") - dateEntered.format("YYYY");
+            referenceYear = moment().format("YYYY") - date.format("YYYY");
             referenceYear = referenceYear - 2;
         }
-        var referenceDate = dateEntered;
+        var referenceDate = date;
         referenceDate = referenceDate.add(referenceYear, "y");
 
         var dateForEarthImg = referenceDate.format("YYYY/MM/DD");
@@ -956,11 +947,11 @@ $(document).ready(function () {
 
     }
 
-    function solarFlare() {
+    function solarFlare(date) {
 
-        var yearsDiff = moment().diff(dateEntered, "years");
+        var yearsDiff = moment().diff(date, "y");
 
-        var YearsAdded = moment(dateEntered).add(yearsDiff, "y");
+        var YearsAdded = moment(date).add(yearsDiff, "y");
 
         var monthsDiff = moment().diff(YearsAdded, "months");
 
@@ -972,7 +963,8 @@ $(document).ready(function () {
 
         var lastDecadeTrans = Math.floor(yearsDiff / 10) * 10;
 
-        lastDecadeTrans = moment(dateEntered).add(lastDecadeTrans, "y");
+        lastDecadeTrans = moment(date).add(lastDecadeTrans, "y");
+
         var solarFlareGenObj = {
             B: {
                 intensity: "",
@@ -1007,19 +999,17 @@ $(document).ready(function () {
         }
 
         function requestMore(i) {
-
             var dateInit = moment(lastDecadeTrans).subtract(i, "y");
             dateInit = dateInit.format("YYYY-MM-DD");
             var dateEnd = moment(lastDecadeTrans).add(i, "y");
             dateEnd = dateEnd.format("YYYY-MM-DD");
             SolFlareQryURL = "https://api.nasa.gov/DONKI/FLR?startDate=" + dateInit + "&endDate=" + dateEnd + "&api_key=" + nasaKey;
-            // console.log(SolFlareQryURL);
 
             $.ajax({
                 url: SolFlareQryURL,
                 method: "GET"
             }).then(function (resp) {
-                // console.log(resp);
+
                 resp.forEach(function (item) {
 
                     var solarFlareMag = item.classType.substring(0, 1);
@@ -1107,8 +1097,9 @@ $(document).ready(function () {
 
     }
 
-    function sunMoon(coordinates) {
-        var sunMoonDate = dateEntered.format("YYYY-MM-DD");
+    function sunMoon(coordinates,date) {
+
+        var sunMoonDate = date.format("YYYY-MM-DD");
         sunMoonQryURL =
             "https://api.worldweatheronline.com/premium/v1/astronomy.ashx?key=" +
             wwoKey + "&q=" + coordinates + "&date=" +
@@ -1154,8 +1145,8 @@ $(document).ready(function () {
 
     }
 
-    function birthAsteroids() {
-        var birthDate = dateEntered.format("YYYY-MM-DD");
+    function birthAsteroids(date) {
+        var birthDate = date.format("YYYY-MM-DD");
         birthAsteroidsyURL = "https://api.nasa.gov/neo/rest/v1/feed?start_date=" +
             birthDate + "&end_date=" +
             birthDate + "&api_key=" + nasaKey;
@@ -1231,7 +1222,7 @@ $(document).ready(function () {
         return dateMonth + dateDay;
     }
 
-    function getCoord(city) {
+    function getCoord(city,date) {
         $.ajax({
             url: 'https://api.opencagedata.com/geocode/v1/json',
             method: 'GET',
@@ -1270,7 +1261,7 @@ $(document).ready(function () {
 
                     locCoordinates = locLat + "," + locLong;
 
-                    sunMoon(locCoordinates);
+                    sunMoon(locCoordinates,date);
 
                 },
                 402: function () {
